@@ -46,7 +46,6 @@
 ## 📂 Structure des Livrables
 * Code source PHP complet
 * Rapport de projet PDF (incluant la planification, les captures d'écran et la gestion d'équipe)
-* Présentation numérique (PowerPoint / Genially)
 
 ---
 *Développé en equipe dans le cadre de la formation DEV 101.*
