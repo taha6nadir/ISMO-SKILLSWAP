@@ -36,7 +36,7 @@
 
 ## 🛠️ Stack Technique
 
-* **Côté Serveur (Backend) :** PHP (POO / MVC)
+* **Côté Serveur (Backend) :** PHP
 * **Base de Données :** MySQL
 * **Côté Client (Frontend) :** HTML5, CSS3, JavaScript (Design responsive / Minimaliste)
 * **Conception :** MERISE (MCD, MLD) & Maquettage UI/UX via Figma
