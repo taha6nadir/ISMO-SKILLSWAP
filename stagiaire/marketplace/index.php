@@ -1,15 +1,12 @@
 <?php
-session_start();
-if (isset($_SESSION)) {
-  extract($_SESSION);
-  if ($role !== 'stagiaire' && $role !== 'mentor') {
-    header('Location: ../../pagelogin/connexion/index.php');
-    exit();
-  }
-}
+$base = '../../';
+require_once __DIR__ . '/../../partials/bootstrap.php';
+require_role(['stagiaire', 'mentor']);
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['pub'])) {
   include("../../database/config.php");
-  extract($_POST);
+    $titre = $_POST['titre'] ?? '';
+    $description = $_POST['description'] ?? '';
+    $tags = $_POST['tags'] ?? '';
   $err = [];
   if (!isset($titre) || empty($titre))
     $err['titre'] = "Le titre est requis";
@@ -48,69 +45,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['pub'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ISMO-SkillSwap – Marketplace</title>
   <link rel="stylesheet" href="../../1-css/marcketplace.css" />
-  <link rel="stylesheet" href="../../1-css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../1-css/style.css" />
 </head>
 
 <body>
   <div class="layout">
-    <aside class="sidebar">
-      <div class="sidebar-logo"><span>ISMO-SkillSwap</span></div>
-      <nav class="sidebar-nav">
-        <div class="nav-item" onclick="location.href='../tableaubord/index.php'">
-          <span class="nav-icon">🏠</span>
-          <span>Tableau de bord</span>
-        </div>
-        <div class="nav-item" onclick="location.href='../mes demandes/index.php'">
-          <span class="nav-icon">📋</span>
-          <span>Mes demandes</span>
-        </div>
-        <div class="nav-item" onclick="location.href='../competences/index.php'">
-          <span class="nav-icon">🏷️</span>
-          <span>Compétences</span>
-        </div>
-        <?php if ($role === 'mentor'): ?>
-          <div class="nav-item" onclick="location.href='../mes propositions/index.php'">
-            <span class="nav-icon">🤝</span>
-            <span>Mes propositions</span>
-          </div>
-        <?php endif; ?>
-        <div class="nav-item" onclick="location.href='../badges/index.php'">
-          <span class="nav-icon">🎖️</span>
-          <span>Badges</span>
-        </div>
-        <div class="nav-item" onclick="location.href='../passeport/index.php'">
-          <span class="nav-icon">👤</span>
-          <span>Passeport</span>
-        </div>
-        <div class="nav-item active" onclick="location.href='index.php'">
-          <span class="nav-icon">🛒</span>
-          <span>Marketplace</span>
-        </div>
-      </nav>
-    </aside>
-
-    <header class="header">
-      <form class="header-search" action="../../search.php" method="GET">
-        <svg class="header-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-        <input name="q" class="header-search-input" type="search" placeholder="Rechercher un stagiaire...">
-      </form>
-      <div class="user-pill" data-email="<?php echo $email; ?>">
-        <div class="user-info">
-          <div class="user-name"><?php echo $nom . " " . $prenom; ?></div>
-          <div class="user-role"><?php echo $role; ?></div>
-        </div>
-        <?php
-        if ($photo) {
-          echo '<img class="user-avatar" src="../../pagelogin/photo/' . $photo . '" alt="Photo de profil">';
-        } else {
-          echo '<div class="user-avatar">' . substr($nom, 0, 1) . substr($prenom, 0, 1) . '</div>';
-        }
-        ?>
-      </div>
-    </header>
+    <?php
+$base = '../../';
+$activeNav = 'marketplace';
+?>
+<?php include __DIR__ . '/../../partials/sidebar.php'; ?>
+<?php include __DIR__ . '/../../partials/header.php'; ?>
 
     <main class="main" data-role="<?php echo $role; ?>">
       <?php if (isset($_GET["msg"])): ?>
@@ -182,7 +130,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['pub'])) {
             $filiereCond = " AND u.filiere = ?";
             $params[] = $_GET['filiere'];
           }
-          $sql = "SELECT a.*, u.nom, u.prenom, u.filiere FROM aide a JOIN utilisateurs u ON a.id_user = u.id_user WHERE a.status = 'ouvert'" . $searchCond . $filiereCond . " ORDER BY a.date_pub DESC";
+          $where = "WHERE a.status = 'ouvert'" . $searchCond . $filiereCond;
+          $page = max(1, (int) ($_GET['page'] ?? 1));
+          $perPage = 9;
+          $countStmt = $db->prepare("SELECT COUNT(*) FROM aide a JOIN utilisateurs u ON a.id_user = u.id_user " . $where);
+          $countStmt->execute($params);
+          $total = (int) $countStmt->fetchColumn();
+          $totalPages = max(1, (int) ceil($total / $perPage));
+          $page = min($page, $totalPages);
+          $offset = ($page - 1) * $perPage;
+          $sql = "SELECT a.*, u.nom, u.prenom, u.filiere FROM aide a JOIN utilisateurs u ON a.id_user = u.id_user " . $where . " ORDER BY a.date_pub DESC LIMIT $perPage OFFSET $offset";
           $stmt = $db->prepare($sql);
           $stmt->execute($params);
           $demandes = $stmt->fetchAll();
@@ -245,6 +202,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['pub'])) {
           </article>
         <?php endforeach; ?>
       </div>
+      <?php
+      $paginationParams = array_filter([
+        'search' => $_GET['search'] ?? '',
+        'filiere' => $_GET['filiere'] ?? '',
+      ], fn($v) => $v !== '');
+      include __DIR__ . '/../../partials/pagination.php';
+      ?>
     </main>
   </div>
 

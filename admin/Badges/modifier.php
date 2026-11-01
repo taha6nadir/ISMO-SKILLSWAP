@@ -8,7 +8,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include("../../database/config.php");
 
-    extract($_POST);
+    $id_badge = $_POST['id_badge'] ?? '';
+    $lenom = $_POST['lenom'] ?? '';
+    $lpoints = $_POST['lpoints'] ?? '';
+    $licone = $_POST['licone'] ?? '';
     $err = [];
 
     if (empty($lenom)) $err['nom'] = "le nom est obligatoire";

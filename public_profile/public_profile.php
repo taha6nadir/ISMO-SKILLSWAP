@@ -1,5 +1,6 @@
 <?php
-session_start();
+$base = '../';
+require_once __DIR__ . '/../partials/bootstrap.php';
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id <= 0) {
   header('Location: ../search.php');
@@ -77,43 +78,20 @@ $attributed_count = count($attributed_badges);
 </head>
 <body>
   <div class="layout">
-    <aside class="sidebar">
-      <div class="sidebar-logo"><span>ISMO-SkillSwap</span></div>
-      <nav class="sidebar-nav">
-        <?php if (isset($_SESSION['role'])): ?>
-          <div class="nav-item" onclick="location.href='<?= $_SESSION['role'] === 'admin' ? '../admin/tableaubord/table.php' : ($_SESSION['role'] === 'formateur' ? '../formateur/tableaubord/tableaubord.php' : '../stagiaire/tableaubord/index.php') ?>'">
-            <span class="nav-icon">🏠</span><span>Tableau de bord</span>
-          </div>
-        <?php endif; ?>
-        <div class="nav-item" onclick="location.href='../search.php'">
-          <span class="nav-icon">🔍</span><span>Recherche</span>
-        </div>
-      </nav>
-    </aside>
-
-    <header class="header">
-      <button class="pub-back" onclick="history.back()">← Retour</button>
-      <form class="header-search" action="../search.php" method="GET">
-        <svg class="header-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-        <input class="header-search-input" type="search" name="q" placeholder="Rechercher un stagiaire...">
-      </form>
-      <div class="user-pill">
-        <div class="user-info">
-          <div class="user-name"><?= isset($_SESSION['nom']) ? htmlspecialchars($_SESSION['nom'] . ' ' . $_SESSION['prenom']) : 'Visiteur' ?></div>
-          <div class="user-role"><?= isset($_SESSION['role']) ? $_SESSION['role'] : 'Profil public' ?></div>
-        </div>
-        <div class="user-avatar"><?= isset($_SESSION['nom']) ? strtoupper(substr($_SESSION['nom'], 0, 1) . substr($_SESSION['prenom'], 0, 1)) : '?' ?></div>
-      </div>
-    </header>
+    <?php
+$base = '../';
+$activeNav = 'profiles';
+$publicNav = true;
+$showBack = true;
+?>
+<?php include __DIR__ . '/../partials/sidebar.php'; ?>
+<?php include __DIR__ . '/../partials/header.php'; ?>
 
     <main class="main">
       <div class="pub-card">
         <div class="pub-avatar">
           <?php if ($photo): ?>
-            <img src="../pagelogin/photo/<?= htmlspecialchars($photo) ?>" alt="" style="width: 80px; height: 80px; object-fit:cover; border-radius:50%;">
+            <img src="../pagelogin/photo/<?= htmlspecialchars($photo) ?>" alt="" loading="lazy" decoding="async" width="80" height="80" style="width: 80px; height: 80px; object-fit:cover; border-radius:50%;">
           <?php else: ?>
             <?= $initials ?>
           <?php endif; ?>

@@ -1,9 +1,59 @@
 <?php
+function optimize_uploaded_photo(string $path, string $ext): void
+{
+    if (!function_exists('imagecreatetruecolor')) {
+        return;
+    }
+    $info = @getimagesize($path);
+    if (!$info) {
+        return;
+    }
+    [$width, $height] = $info;
+    $max = 400;
+    if ($width <= $max && $height <= $max) {
+        return;
+    }
+    $ratio = min($max / $width, $max / $height);
+    $newW = max(1, (int) round($width * $ratio));
+    $newH = max(1, (int) round($height * $ratio));
+    $source = match ($ext) {
+        'jpg' => @imagecreatefromjpeg($path),
+        'png' => @imagecreatefrompng($path),
+        'webp' => @imagecreatefromwebp($path),
+        default => null,
+    };
+    if (!$source) {
+        return;
+    }
+    $canvas = imagecreatetruecolor($newW, $newH);
+    if ($ext === 'png' || $ext === 'webp') {
+        imagealphablending($canvas, false);
+        imagesavealpha($canvas, true);
+        imagefilledrectangle($canvas, 0, 0, $newW, $newH, imagecolorallocatealpha($canvas, 0, 0, 0, 127));
+    }
+    imagecopyresampled($canvas, $source, 0, 0, 0, 0, $newW, $newH, $width, $height);
+    match ($ext) {
+        'jpg' => imagejpeg($canvas, $path, 82),
+        'png' => imagepng($canvas, $path, 7),
+        'webp' => imagewebp($canvas, $path, 82),
+        default => null,
+    };
+    imagedestroy($source);
+    imagedestroy($canvas);
+}
+
 $err = [];
+$photo_ext = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    extract($_POST);
+    $role = $_POST['role'] ?? '';
+    $nom = $_POST['nom'] ?? '';
+    $prenom = $_POST['prenom'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $filiere = $_POST['filiere'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
+    $terms = $_POST['terms'] ?? '';
     $err = [];
-    $ext = ['image/jpeg', 'image/png', 'image/webp'];
     if (!isset($role) || $role == "")$err["role"] = "le rôle est obligatoire";
     if (!isset($nom) || $nom == "")$err["nom"] = "le nom est obligatoire";
     else if (!preg_match("/^[a-zA-Z]+$/", $nom))$err["nom"] = "le nom ne doit contenir que des lettres";
@@ -24,29 +74,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     else if ($confirm_password != $password)$err["confirm_password"] = "la confirmation ne correspond pas au mot de passe";
     if (!isset($terms) || !$terms)$err["terms"] = "vous devez accepter les conditions d'utilisation";
     if (!empty($_FILES['photo']['name'])) {
-    if (!in_array($_FILES['photo']['type'], $ext)) $err['photo'] = "le format de la photo doit être jpg, jpeg ou png";
-    elseif ($_FILES['photo']['size'] > 2 * 1024 * 1024) $err['photo'] = "la taille de la photo doit être inférieure ou égale à 2Mo";
+        $allowedTypes = [IMAGETYPE_JPEG => 'jpg', IMAGETYPE_PNG => 'png', IMAGETYPE_WEBP => 'webp'];
+        $imageInfo = @getimagesize($_FILES['photo']['tmp_name']);
+        if (!$imageInfo || !isset($allowedTypes[$imageInfo[2]])) {
+            $err['photo'] = "le format de la photo doit être jpg, jpeg, png ou webp";
+        } elseif ($_FILES['photo']['size'] > 2 * 1024 * 1024) {
+            $err['photo'] = "la taille de la photo doit être inférieure ou égale à 2Mo";
+        } else {
+            $photo_ext = $allowedTypes[$imageInfo[2]];
+        }
     }
     if (empty($err)) {
         $nom = htmlspecialchars(trim($nom));
         $prenom = htmlspecialchars(trim($prenom));
         $email = htmlspecialchars(trim($email));
-        $password = htmlspecialchars(trim($password));
-        $confirm_password = htmlspecialchars(trim($confirm_password));
+        $password = trim($password);
+        $confirm_password = trim($confirm_password);
         $filiere = htmlspecialchars(trim($filiere));
         $role = htmlspecialchars(trim($role));
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
         $date = date('Y-m-d H:i:s');
         $statut = "en_attente";
         #deplacement de la photo de profil dans le dossier photos
-        $photo_path = $_FILES['photo']['name'];
-        
-        if(isset($_FILES)&&!empty($_FILES["photo"]['name'])) {
-            $move = move_uploaded_file($_FILES['photo']['tmp_name'], "../photo/" . $photo_path);
-            if ($move == false) {
+        $photo_path = '';
+        if (!empty($_FILES['photo']['name']) && $photo_ext !== '') {
+            if (!is_dir('../photo')) {
+                mkdir('../photo', 0775, true);
+            }
+            $photo_path = bin2hex(random_bytes(8)) . '.' . $photo_ext;
+            $destination = "../photo/" . $photo_path;
+            if (!move_uploaded_file($_FILES['photo']['tmp_name'], $destination)) {
                 header("Location: ../connexion/index.php?error=Erreur lors de l'upload de la photo");
                 exit();
-        }
+            }
+            optimize_uploaded_photo($destination, $photo_ext);
         }
         try {
             $req = $db->prepare("INSERT INTO utilisateurs(nom, prenom, email, motdepasse,role,photo, filiere,statut, date_inscription) VALUES(?,?,?,?,?,?,?,?,?)");

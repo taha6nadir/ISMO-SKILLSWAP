@@ -1,12 +1,8 @@
 <?php
-session_start();
-if (isset($_SESSION)) {
-    extract($_SESSION);
-    if ($role !== 'stagiaire' && $role !== 'mentor') {
-        header('Location: ../../pagelogin/connexion/index.php');
-        exit();
-    }
-    try {
+$base = '../../';
+require_once __DIR__ . '/../../partials/bootstrap.php';
+require_role(['stagiaire', 'mentor']);
+try {
         include('../../database/config.php');
         if (isset($_POST['resoudre']) && isset($_POST['id_demande'])) {
             $id_demande = $_POST['id_demande'];
@@ -49,5 +45,4 @@ if (isset($_SESSION)) {
         echo "Erreur : " . $e->getMessage();
         exit();
     }
-}
 ?>

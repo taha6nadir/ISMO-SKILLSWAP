@@ -1,12 +1,7 @@
 <?php
-session_start();
-if (isset($_SESSION)) {
-  extract($_SESSION);
-  if ($role !== 'stagiaire' && $role !== 'mentor') {
-    header('Location: ../../pagelogin/connexion/index.php');
-    exit();
-  }
-}
+$base = '../../';
+require_once __DIR__ . '/../../partials/bootstrap.php';
+require_role(['stagiaire', 'mentor']);
 try{
   include('../../database/config.php');
     $nbaide = $db->prepare("SELECT COUNT(*) FROM aide_effectuee WHERE id_mentor = ?");
@@ -46,65 +41,12 @@ try{
 
 <body>
   <div class="layout">
-    <aside class="sidebar">
-      <div class="sidebar-logo"><span>ISMO-SkillSwap</span></div>
-      <nav class="sidebar-nav">
-        <div class="nav-item" onclick="location.href='../tableaubord/index.php'">
-          <span class="nav-icon">🏠</span>
-          <span>Tableau de bord</span>
-        </div>
-        <div class="nav-item" onclick="location.href='../mes demandes/index.php'">
-          <span class="nav-icon">📋</span>
-          <span>Mes demandes</span>
-        </div>
-        <div class="nav-item" onclick="location.href='../competences/index.php'">
-          <span class="nav-icon">🏷️</span>
-          <span>Compétences</span>
-        </div>
-        <?php if ($role === 'mentor'): ?>
-          <div class="nav-item" onclick="location.href='../mes propositions/index.php'">
-            <span class="nav-icon">🤝</span>
-            <span>Mes propositions</span>
-          </div>
-        <?php endif; ?>
-        <div class="nav-item" onclick="location.href='../badges/index.php'">
-          <span class="nav-icon">🎖️</span>
-          <span>Badges</span>
-        </div>
-        <div class="nav-item active" onclick="location.href='index.php'">
-          <span class="nav-icon">👤</span>
-          <span>Passeport</span>
-        </div>
-        <div class="nav-item" onclick="location.href='../marketplace/index.php'">
-          <span class="nav-icon">🛒</span>
-          <span>Marketplace</span>
-        </div>
-      </nav>
-    </aside>
-
-    <header class="header">
-      <form class="header-search" action="../../search.php" method="GET">
-        <svg class="header-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-        <input name="q" class="header-search-input" type="search" placeholder="Rechercher un stagiaire...">
-      </form>
-      <div class="user-pill" data-email="<?php echo $email; ?>">
-        <div class="user-info">
-
-          <div class="user-name"><?php echo $nom . " " . $prenom; ?></div>
-          <div class="user-role"><?php echo $role; ?></div>
-        </div>
-        <?php
-        if ($photo) {
-          echo '<img class="user-avatar" src="../../pagelogin/photo/' . $photo . '" alt="Photo de profil">';
-        } else {
-          echo '<div class="user-avatar">' . substr($nom, 0, 1) . substr($prenom, 0, 1) . '</div>';
-        }
-        ?>
-      </div>
-    </header>
+    <?php
+$base = '../../';
+$activeNav = 'passport';
+?>
+<?php include __DIR__ . '/../../partials/sidebar.php'; ?>
+<?php include __DIR__ . '/../../partials/header.php'; ?>
 
     <main class="main">
       <section class="passport-top">
@@ -120,7 +62,7 @@ try{
 
           <?php
           if ($photo) {
-            echo '<img class="profile-badge" src="../../pagelogin/photo/' . $photo . '" alt="Photo de profil">';
+            echo '<img class="profile-badge" src="../../pagelogin/photo/' . htmlspecialchars($photo) . '" alt="Photo de profil" loading="lazy" decoding="async" width="72" height="72">';
           } else {
             echo '<div class="profile-badge">' . substr($nom, 0, 1) . substr($prenom, 0, 1) . '</div>';
           }

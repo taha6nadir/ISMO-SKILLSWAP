@@ -1,7 +1,8 @@
 <?php
-session_start();
+$base = '../../';
+require_once __DIR__ . '/../../partials/bootstrap.php';
+require_role(['stagiaire', 'mentor']);
 if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] !== "") {
-    extract($_SESSION);
      if ($role !== 'stagiaire' && $role !== 'mentor') {
         header('Location: ../../pagelogin/connexion/index.php');
         exit();

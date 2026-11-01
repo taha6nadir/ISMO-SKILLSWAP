@@ -19,7 +19,10 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `date_inscription` DATETIME DEFAULT NULL,
   `note_moyenne` DECIMAL(3,1) NOT NULL DEFAULT 0.0,
   PRIMARY KEY (`id_user`),
-  UNIQUE KEY `email` (`email`)
+  UNIQUE KEY `email` (`email`),
+  KEY `idx_role` (`role`),
+  KEY `idx_statut` (`statut`),
+  KEY `idx_filiere` (`filiere`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS `aide` (
@@ -33,6 +36,8 @@ CREATE TABLE IF NOT EXISTS `aide` (
   `signal` INT DEFAULT 0,
   PRIMARY KEY (`id_demande`),
   KEY `id_user` (`id_user`),
+  KEY `idx_status_date` (`status`, `date_pub`),
+  KEY `idx_signal` (`signal`),
   CONSTRAINT `aide_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `utilisateurs` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

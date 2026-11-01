@@ -4,7 +4,9 @@ $error = $_GET['error'] ?? '';
 $rememberedEmail = $_COOKIE['remember_email'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  extract($_POST);
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $remember = $_POST['remember'] ?? '';
   $err = [];
   if (!isset($email) || empty($email))
     $err["email"] = "Veuillez remplir le champ email.";

@@ -5,7 +5,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'formateur') {
     exit();
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    extract($_POST);
+    $id_user = $_POST['id_user'] ?? '';
+    $id_badge = $_POST['id_badge'] ?? '';
     include("../../database/config.php");
     try{
         #verifier si le stagiaire a deja le badge

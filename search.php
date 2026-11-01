@@ -1,5 +1,6 @@
 <?php
-session_start();
+$base = '';
+require_once __DIR__ . '/partials/bootstrap.php';
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
 $users = [];
 if ($q !== '') {
@@ -44,36 +45,13 @@ if ($q !== '') {
 </head>
 <body>
   <div class="layout">
-    <aside class="sidebar">
-      <div class="sidebar-logo"><span>ISMO-SkillSwap</span></div>
-      <nav class="sidebar-nav">
-        <?php if (isset($_SESSION['role'])): ?>
-          <div class="nav-item" onclick="location.href='<?= ($_SESSION['role'] === 'formateur' ? 'formateur/tableaubord/tableaubord.php' : 'stagiaire/tableaubord/index.php') ?>'">
-            <span class="nav-icon">🏠</span><span>Tableau de bord</span>
-          </div>
-        <?php endif; ?>
-        <div class="nav-item" onclick="location.href='public_profile/public_profile.php'">
-          <span class="nav-icon">👤</span><span>Profils publics</span>
-        </div>
-      </nav>
-    </aside>
-
-    <header class="header">
-      <form class="header-search" action="search.php" method="GET">
-        <svg class="header-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-        <input class="header-search-input" type="search" name="q" placeholder="Rechercher un stagiaire..." value="<?= htmlspecialchars($q) ?>">
-      </form>
-      <div class="user-pill">
-        <div class="user-info">
-          <div class="user-name">Recherche</div>
-          <div class="user-role"><?= isset($_SESSION['role']) ? $_SESSION['role'] : 'Visiteur' ?></div>
-        </div>
-        <div class="user-avatar">?</div>
-      </div>
-    </header>
+    <?php
+$base = '';
+$activeNav = 'search';
+$publicNav = true;
+?>
+<?php include __DIR__ . '/partials/sidebar.php'; ?>
+<?php include __DIR__ . '/partials/header.php'; ?>
 
     <main class="main">
       <section class="search-page">
