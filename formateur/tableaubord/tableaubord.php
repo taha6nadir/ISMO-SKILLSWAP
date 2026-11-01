@@ -29,7 +29,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../1-css/style.css">
     <link rel="stylesheet" href="tableaubord.css">
     <title>Document</title>
@@ -88,7 +88,7 @@ $activeNav = 'dashboard';
                             tout</a>
                     </div>
                     <?php if (count($competencesAValider) == 0): ?>
-                        <div style="text-align:center;padding:24px;color:#94a3b8;">Aucune compétence en attente</div>
+                        <div style="text-align:center;padding:24px;color:#a5a3bf;">Aucune compétence en attente</div>
                     <?php else: ?>
                         <?php foreach ($competencesAValider as $c): ?>
                             <div class="item-box">
@@ -97,14 +97,14 @@ $activeNav = 'dashboard';
                                     <span class="tag"><?php echo htmlspecialchars($c['niveau'] ?? 'N/A'); ?></span>
                                 </div>
                                 <span
-                                    style="color:#94a3b8; font-size:13px;"><?php echo htmlspecialchars($c['prenom'] . ' ' . $c['nom']); ?></span>
+                                    style="color:#a5a3bf; font-size:13px;"><?php echo htmlspecialchars($c['prenom'] . ' ' . $c['nom']); ?></span>
                                 <div class="btn-group">
                                     <a href="../validecompetence/valider.php?iduser=<?php echo $c['id_user']; ?>&idcompetence=<?php echo $c['id_competence']; ?>&id_validateur=<?php echo $_SESSION['id_user']; ?>"
                                         class="btn-action"
-                                        style="background:#22c55e;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">✓</a>
+                                        style="background:#10b981;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;"><?= icon('check') ?></a>
                                     <a href="../validecompetence/refuser.php?iduser=<?php echo $c['id_user']; ?>&idcompetence=<?php echo $c['id_competence']; ?>&id_validateur=<?php echo $_SESSION['id_user']; ?>"
                                         class="btn-action"
-                                        style="background:#ef4444;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">✕</a>
+                                        style="background:#f43f5e;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;"><?= icon('x') ?></a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -117,7 +117,7 @@ $activeNav = 'dashboard';
                     </div>
                     <div style="display:flex; flex-direction:column; gap:16px;">
                         <?php if (count($topStagiaires) == 0): ?>
-                            <div style="text-align:center;padding:24px;color:#94a3b8;">Aucun stagiaire</div>
+                            <div style="text-align:center;padding:24px;color:#a5a3bf;">Aucun stagiaire</div>
                         <?php else: ?>
                             <?php foreach ($topStagiaires as $s): ?>
                                 <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -130,7 +130,7 @@ $activeNav = 'dashboard';
                                             <div style="font-size:14px; font-weight:600;">
                                                 <?php echo htmlspecialchars($s['prenom'] . ' ' . $s['nom']); ?>
                                             </div>
-                                            <div style="font-size:11px; color:#94a3b8;">
+                                            <div style="font-size:11px; color:#a5a3bf;">
                                                 <?php echo htmlspecialchars($s['filiere'] ?? 'N/A'); ?>
                                             </div>
                                         </div>
@@ -149,7 +149,7 @@ $activeNav = 'dashboard';
                     </div>
                     <div style="display:flex; flex-direction:column; gap:10px;">
                         <?php if (count($competencesDemandees) == 0): ?>
-                            <div style="text-align:center;padding:24px;color:#94a3b8;">Aucune donnée</div>
+                            <div style="text-align:center;padding:24px;color:#a5a3bf;">Aucune donnée</div>
                         <?php else: ?>
                             <?php foreach ($competencesDemandees as $c): ?>
                                 <div class="item-box" style="display:flex; justify-content:space-between; align-items:center;">
@@ -167,7 +167,5 @@ $activeNav = 'dashboard';
     
     <script src="tableaubord.js"></script>
 </body>
-
-</html>
 
 </html>

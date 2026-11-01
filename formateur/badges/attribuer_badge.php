@@ -1,37 +1,39 @@
 <?php
-session_start();
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'formateur') {
-    header('Location: ../../pagelogin/connexion/index.php');
+$base = '../../';
+require_once __DIR__ . '/../../partials/bootstrap.php';
+require_role(['formateur']);
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: badge.php");
     exit();
 }
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id_user = $_POST['id_user'] ?? '';
-    $id_badge = $_POST['id_badge'] ?? '';
-    include("../../database/config.php");
-    try{
-        #verifier si le stagiaire a deja le badge
-        $stmt = $db->prepare("SELECT * FROM obtention_badges WHERE id_user = ? AND id_badge = ?");
-        $stmt->execute([ $id_user, $id_badge]);
-        if ($stmt->rowCount() > 0) {
-            header("Location: badge.php?error=Le stagiaire a déjà ce badge.");
-            exit();
-        }
-        #attribuer le badge
-        $stmt = $db->prepare("INSERT INTO obtention_badges (id_user, id_badge, date_obtention) VALUES (?, ?, NOW())");
-        $stmt->execute([ $id_user, $id_badge]);
-        if ($stmt->rowCount() > 0) {
-            $stmt = $db->prepare("UPDATE utilisateurs SET score = score + 100 WHERE id_user = ?");
-            $stmt->execute([$id_user]);
-            header("Location: badge.php?msg=Badge attribué avec succès.");
-            exit();
-        } else {
-            
-            header("Location: badge.php?error=Erreur lors de l'attribution du badge.");
-            exit();
-        }
-    }catch(PDOException $e){
-        echo "Erreur: " . $e->getMessage();
+
+$idUser = isset($_POST['id_user']) ? (int) $_POST['id_user'] : 0;
+$idBadge = isset($_POST['id_badge']) ? (int) $_POST['id_badge'] : 0;
+
+if ($idUser <= 0 || $idBadge <= 0) {
+    header("Location: badge.php?error=missing_params");
+    exit();
+}
+
+try {
+    $stmt = $db->prepare("SELECT 1 FROM obtention_badges WHERE id_user = ? AND id_badge = ?");
+    $stmt->execute([$idUser, $idBadge]);
+    if ($stmt->fetchColumn()) {
+        header("Location: badge.php?error=" . urlencode("Le stagiaire a déjà ce badge."));
         exit();
     }
+
+    $stmt = $db->prepare("INSERT INTO obtention_badges (id_user, id_badge, date_obtention) VALUES (?, ?, NOW())");
+    $stmt->execute([$idUser, $idBadge]);
+
+    $stmt = $db->prepare("UPDATE utilisateurs SET score = score + 100 WHERE id_user = ?");
+    $stmt->execute([$idUser]);
+
+    header("Location: badge.php?msg=" . urlencode("Badge attribué avec succès."));
+    exit();
+} catch (PDOException $e) {
+    header("Location: badge.php?error=" . urlencode($e->getMessage()));
+    exit();
 }
 ?>

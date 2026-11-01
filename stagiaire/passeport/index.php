@@ -33,7 +33,7 @@ try{
   <title>ISMO-SkillSwap – Passeport</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../../1-css/style.css" />
   <link rel="stylesheet" href="style.css" />
@@ -69,7 +69,7 @@ $activeNav = 'passport';
           ?>
           <div class="profile-info">
             <div class="profile-name"><?php echo htmlspecialchars($nom . " " . $prenom); ?></div>
-            <div class="profile-role"><?php echo htmlspecialchars($role) . " - " . htmlspecialchars($filiere); ?></div>
+            <div class="profile-role"><?php echo htmlspecialchars($role) . " - " . htmlspecialchars($filiere ?? ''); ?></div>
           </div>
         </div>
         <div class="summary-stats">

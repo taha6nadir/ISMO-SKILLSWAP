@@ -1,15 +1,15 @@
-﻿:root {
-  --bg: #eef3f8;
+:root {
+  --bg: #f0effa;
   --surface: #ffffff;
-  --surface-soft: #f4f7fb;
-  --border: #dbe4ef;
-  --text: #101d33;
-  --muted: #6c7a94;
-  --blue: #3b82f6;
-  --blue-soft: #e7eefc;
-  --green: #16a34a;
+  --surface-soft: #f5f6fe;
+  --border: #e6e4f4;
+  --text: #12102a;
+  --muted: #6f6c8f;
+  --blue: #7c3aed;
+  --blue-soft: #ede9fe;
+  --green: #059669;
   --orange: #f59e0b;
-  --danger: #ef4444;
+  --danger: #f43f5e;
   --radius: 24px;
 }
 
@@ -19,8 +19,8 @@
 
 html,
 body {
-    font-family: 'Sora', sans-serif;
-    background: #f8fafc;
+    font-family: 'Manrope', sans-serif;
+    background: #f7f7fd;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     letter-spacing: -0.02em;
 }
 
@@ -57,7 +57,7 @@ input {
 .content-area {
   padding: 0 14px 100px 0;
   min-height: calc(100vh - var(--header-h, 64px));
-  background: #f8fafc;
+  background: #f7f7fd;
   flex: 1;
 }
 
@@ -117,7 +117,7 @@ input {
 }
 
 .message-error {
-  background: linear-gradient(135deg, #fef2f2, #ffffff);
+  background: linear-gradient(135deg, #fff1f2, #ffffff);
   border-color: rgba(239, 68, 68, 0.24);
 }
 

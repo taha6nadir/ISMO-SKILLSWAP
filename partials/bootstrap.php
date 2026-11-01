@@ -4,11 +4,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once __DIR__ . '/../database/config.php';
+require_once __DIR__ . '/icons.php';
 
 $viewer = null;
 if (!empty($_SESSION['id_user']) && isset($db)) {
     try {
-        $stmtViewer = $db->prepare("SELECT id_user, nom, prenom, email, role, score, photo FROM utilisateurs WHERE id_user = ?");
+        $stmtViewer = $db->prepare("SELECT id_user, nom, prenom, email, role, score, photo, filiere, statut, note_moyenne, date_inscription FROM utilisateurs WHERE id_user = ?");
         $stmtViewer->execute([$_SESSION['id_user']]);
         $viewer = $stmtViewer->fetch(PDO::FETCH_ASSOC) ?: null;
     } catch (PDOException $e) {
@@ -17,7 +18,7 @@ if (!empty($_SESSION['id_user']) && isset($db)) {
 }
 
 if ($viewer) {
-    foreach (['id_user', 'nom', 'prenom', 'email', 'role', 'score', 'photo'] as $field) {
+    foreach (['id_user', 'nom', 'prenom', 'email', 'role', 'score', 'photo', 'filiere', 'statut', 'note_moyenne', 'date_inscription'] as $field) {
         ${$field} = $viewer[$field];
     }
     $_SESSION['role'] = $viewer['role'];
@@ -25,6 +26,10 @@ if ($viewer) {
     $_SESSION['prenom'] = $viewer['prenom'];
     $_SESSION['email'] = $viewer['email'];
     $_SESSION['photo'] = $viewer['photo'];
+    $_SESSION['filiere'] = $viewer['filiere'];
+    $_SESSION['statut'] = $viewer['statut'];
+    $_SESSION['note_moyenne'] = $viewer['note_moyenne'];
+    $_SESSION['date_inscription'] = $viewer['date_inscription'];
 } else {
     $id_user = $_SESSION['id_user'] ?? null;
     $nom = $_SESSION['nom'] ?? '';
@@ -33,6 +38,10 @@ if ($viewer) {
     $role = $_SESSION['role'] ?? null;
     $score = $_SESSION['score'] ?? 0;
     $photo = $_SESSION['photo'] ?? null;
+    $filiere = $_SESSION['filiere'] ?? '';
+    $statut = $_SESSION['statut'] ?? null;
+    $note_moyenne = $_SESSION['note_moyenne'] ?? 0;
+    $date_inscription = $_SESSION['date_inscription'] ?? null;
 }
 
 $viewerRole = $role ?? null;

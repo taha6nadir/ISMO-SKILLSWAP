@@ -16,16 +16,23 @@ if (!in_array($roleFiltre, $rolesAutorises)) {
   $roleFiltre = '';
 }
 
+$conditions = [];
+$params = [];
 if ($roleFiltre) {
-  $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE role = ? ORDER BY date_inscription DESC");
-  $stmt->execute([$roleFiltre]);
-} 
-elseif ($statutFiltre) {
-  $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE statut = ? ORDER BY date_inscription DESC");
-  $stmt->execute([$statutFiltre]);
-}else {
-  $stmt = $db->query("SELECT * FROM utilisateurs ORDER BY date_inscription DESC");
+  $conditions[] = "role = ?";
+  $params[] = $roleFiltre;
 }
+if ($statutFiltre) {
+  $conditions[] = "statut = ?";
+  $params[] = $statutFiltre;
+}
+$sql = "SELECT * FROM utilisateurs";
+if ($conditions) {
+  $sql .= " WHERE " . implode(" AND ", $conditions);
+}
+$sql .= " ORDER BY date_inscription DESC";
+$stmt = $db->prepare($sql);
+$stmt->execute($params);
 
 $utilisateurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $total = count($utilisateurs);
@@ -44,7 +51,7 @@ $suspendus = $db->query("SELECT COUNT(*) FROM utilisateurs WHERE statut = 'suspe
   <link rel="stylesheet" href="../../1-css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -56,7 +63,7 @@ $activeNav = 'users';
 <?php include __DIR__ . '/../../partials/sidebar.php'; ?>
 <?php include __DIR__ . '/../../partials/header.php'; ?>
 
-    <section class="content-area">
+    <main class="content-area">
       <div class="page-header">
         <div>
           <p class="eyebrow">Gestion des utilisateurs</p>
@@ -65,7 +72,7 @@ $activeNav = 'users';
       </div>
       <?php if ($messageSucces): ?>
         <div class="message-alert message-success">
-          <span class="message-icon">✓</span>
+          <span class="message-icon"><?= icon('check') ?></span>
           <div>
             <strong>Succès</strong>
             <p><?= htmlspecialchars($messageSucces) ?></p>
@@ -105,7 +112,7 @@ $activeNav = 'users';
       <section class="table-card">
         <div class="table-header">
           <div class="search-wrapper">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"><?= icon('search') ?></span>
             <input type="search" placeholder="Rechercher par nom, email..." aria-label="Recherche utilisateurs" />
           </div>
           <form class="filter-row" method="get" action="utili.php">
@@ -172,7 +179,6 @@ $activeNav = 'users';
           </table>
         </div>
       </section>
-    </section>
     </main>
   </div>
   <script src="../../2-script/profile-menu.js"></script>

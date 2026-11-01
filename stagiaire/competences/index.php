@@ -2,9 +2,15 @@
 $base = '../../';
 require_once __DIR__ . '/../../partials/bootstrap.php';
 require_role(['stagiaire', 'mentor']);
+$err = [];
+$competences = [];
+$total = 0;
+$validees = 0;
+$en_attente = 0;
+$refusees = 0;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['declarer'])) {
-      $err=[];
       if(!isset($_POST['competence']) || empty($_POST['competence'])) $err['competence']="Veuillez sélectionner une compétence";
       if(!isset($_POST['niveau']) || empty($_POST['niveau'])) $err['niveau']="Veuillez sélectionner un niveau";
       if(!isset($_POST['justification']) || empty($_POST['justification'])) $err['justification']="Veuillez saisir une justification";
@@ -29,8 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
     }
   }
-  include '../../database/config.php';
-  try {
+}
+
+include '../../database/config.php';
+try {
     #récupère toutes les compétences de l'utilisateur connecté et les validees en premier puis en attente et enfin refusées
     $competences = $db->prepare("SELECT * FROM validation_competence vc JOIN competences c ON vc.id_competence = c.id_competence WHERE vc.id_user = ? ORDER BY vc.status DESC");
     $competences->execute([$id_user]);
@@ -52,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
   }
-}
 
 ?>
 <!DOCTYPE html>
@@ -63,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ISMO-SkillSwap – Mes compétences</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../../1-css/style.css">
   <link rel="stylesheet" href="style.css">
@@ -151,7 +158,7 @@ $activeNav = 'skills';
         <?php foreach ($competences as $competence): ?>
           <article class="skill-card <?= $competence['status'] ?>">
             <div class="skill-card-header">
-              <h2>⚛️ <?= $competence['nom'] ?></h2>
+              <h2><?= icon('tag') ?> <?= $competence['nom'] ?></h2>
               <span class="status-badge <?= $competence['status'] ?>"> <?= ucfirst($competence['status']) ?></span>
             </div>
             <span class="skill-cat"><?= $competence['categorie'] ?></span>
@@ -167,7 +174,7 @@ $activeNav = 'skills';
             <?php endif; ?>
             <?php if ($competence['status'] === 'refusee'): ?>
               <a href="supprimer_demande.php?id_competence=<?= $competence['id_competence'] ?>" class="btn-supprimer"
-                onclick="return confirm('Supprimer cette demande ?')">🗑️ Supprimer la demande</a>
+                onclick="return confirm('Supprimer cette demande ?')"><?= icon('trash') ?> Supprimer la demande</a>
             <?php endif; ?>
           </article>
         <?php endforeach; ?>

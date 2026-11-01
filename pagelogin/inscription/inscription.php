@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $confirm_password = $_POST['confirm_password'] ?? '';
     $terms = $_POST['terms'] ?? '';
     $err = [];
-    if (!isset($role) || $role == "")$err["role"] = "le rôle est obligatoire";
+    if (!in_array($role, ['stagiaire', 'formateur'], true))$err["role"] = "le rôle est obligatoire";
     if (!isset($nom) || $nom == "")$err["nom"] = "le nom est obligatoire";
     else if (!preg_match("/^[a-zA-Z]+$/", $nom))$err["nom"] = "le nom ne doit contenir que des lettres";
     if (!isset($prenom) || $prenom == "")$err["prenom"] = "le prénom est obligatoire";
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ISMO-SkillSwap – Inscription</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="inscription.css">
 </head>
@@ -202,14 +202,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="role-check"></div>
                     </div>
 
-                    <div class="role-card" data-role="admin" onclick="selectRole(this)">
-                        <div class="role-icon admin">🛡️</div>
-                        <div class="role-info">
-                            <h3>Administrateur</h3>
-                            <p>Gérez la plateforme, les filières et les utilisateurs ISMO</p>
-                        </div>
-                        <div class="role-check"></div>
-                    </div>
                 </div>
 
                 <button class="btn-continue" id="btn-continue" onclick="goToForm()">Continuer →</button>
@@ -236,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="field">
                             <label>Nom</label>
                             <input type="text" name="nom" value="<?php if (isset($_POST['nom']))
-                                echo $_POST['nom']; ?>"
+                                echo htmlspecialchars($_POST['nom']); ?>"
                                 placeholder="Nom de famille" />
                             <?php if (isset($err["nom"]))
                                 echo "<div style='color:red'>" . $err["nom"] . "</div>"; ?>
@@ -245,7 +237,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label>Prénom</label>
                             <input type="text" name="prenom"
                                 value="<?php if (isset($_POST['prenom']))
-                                    echo $_POST['prenom']; ?>"
+                                    echo htmlspecialchars($_POST['prenom']); ?>"
                                 placeholder="Prénom" />
                             <?php if (isset($err["prenom"]))
                                 echo "<div style='color:red'>" . $err["prenom"] . "</div>"; ?>
@@ -256,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label>Email</label>
                         <input type="email" name="email"
                             value="<?php if (isset($_POST['email']))
-                                echo $_POST['email']; ?>"
+                                echo htmlspecialchars($_POST['email']); ?>"
                             placeholder="votre.email@ismo.ma" />
                         <?php if (isset($err["email"]))
                             echo "<div style='color:red'>" . $err["email"] . "</div>"; ?>
@@ -301,7 +293,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="password-wrapper">
                             <input type="password" name="password" id="password"
                                 value="<?php if (isset($_POST['password']))
-                                    echo $_POST['password']; ?>"
+                                    echo htmlspecialchars($_POST['password']); ?>"
                                 placeholder="••••••••" />
                             <button type="button" class="toggle-pw" onclick="togglePassword('password', this)"
                                 aria-label="Afficher le mot de passe">
@@ -321,7 +313,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="password-wrapper">
                             <input type="password" name="confirm_password" id="confirm_password"
                                 value="<?php if (isset($_POST['confirm_password']))
-                                    echo $_POST['confirm_password']; ?>"
+                                    echo htmlspecialchars($_POST['confirm_password']); ?>"
                                 placeholder="••••••••" />
                             <button type="button" class="toggle-pw" onclick="togglePassword('confirm_password', this)"
                                 aria-label="Afficher le mot de passe">

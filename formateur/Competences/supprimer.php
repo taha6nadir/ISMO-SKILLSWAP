@@ -1,21 +1,21 @@
 <?php
-session_start();
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'formateur') {
-    header('Location: ../../pagelogin/connexion/index.php');
+$base = '../../';
+require_once __DIR__ . '/../../partials/bootstrap.php';
+require_role(['formateur']);
+
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+if ($id <= 0) {
+    header("Location: compe.php?error=missing_id");
     exit();
 }
-include("../../database/config.php");
-if(isset($_GET["id"])){
-    try{
-        $req=$db->prepare("DELETE FROM competences WHERE id_competence=?");
-        $r=$req->execute([$_GET["id"]]);
-        if($r==false){
-            header("Location: compe.php?error=Suppression a echoue");
-        }else{
-            header("Location: compe.php?msg=Suppression a reussi");
-        }
-    }catch(PDOException $e){
-        echo "Erreur: ".$e->getMessage();
-    }
+
+try {
+    $req = $db->prepare("DELETE FROM competences WHERE id_competence = ?");
+    $req->execute([$id]);
+    header("Location: compe.php?msg=Suppression réussie");
+    exit();
+} catch (PDOException $e) {
+    header("Location: compe.php?error=" . urlencode($e->getMessage()));
+    exit();
 }
 ?>

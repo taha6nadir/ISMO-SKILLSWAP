@@ -1,16 +1,16 @@
 :root {
-  --bg: #eef3f8;
+  --bg: #f0effa;
   --surface: #ffffff;
-  --surface-soft: #f4f7fb;
-  --border: #dbe4ef;
-  --text: #101d33;
-  --muted: #6c7a94;
-  --blue: #2e6fca;
-  --blue-soft: #e7eefc;
-  --green: #16a34a;
+  --surface-soft: #f5f6fe;
+  --border: #e6e4f4;
+  --text: #12102a;
+  --muted: #6f6c8f;
+  --blue: #6366f1;
+  --blue-soft: #ede9fe;
+  --green: #059669;
   --orange: #f59e0b;
-  --danger: #ef4444;
-  --warning: #f97316;
+  --danger: #f43f5e;
+  --warning: #fb923c;
   --radius: 24px;
 }
 
@@ -20,8 +20,8 @@
 
 html,
 body {
-    font-family: 'Sora', sans-serif;
-    background: #f8fafc;
+    font-family: 'Manrope', sans-serif;
+    background: #f7f7fd;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     letter-spacing: -0.02em;
 }
 
@@ -57,7 +57,7 @@ input {
 .content-area {
   padding: 0 14px 100px 0;
   min-height: calc(100vh - var(--header-h, 64px));
-  background: #f8fafc;
+  background: #f7f7fd;
   flex: 1;
 }
 
@@ -95,7 +95,7 @@ input {
 .btn-primary {
   background: var(--blue);
   color: #ffffff;
-  box-shadow: 0 18px 40px rgba(46, 111, 202, 0.18);
+  box-shadow: 0 18px 40px rgba(124, 58, 237, 0.18);
 }
 
 /* Stats Grid */
@@ -132,10 +132,10 @@ input {
 
 .stat-card strong {
   display: block;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
-  color: #0d2240;
+  color: #17143a;
 }
 
 .stat-card.danger strong {
@@ -185,10 +185,10 @@ input {
 
 .publication-info h2 {
   margin: 0 0 12px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #0d2240;
+  color: #17143a;
   letter-spacing: -0.1px;
 }
 
@@ -207,7 +207,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
   flex-shrink: 0;
@@ -223,7 +223,7 @@ input {
 .card-user-name {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #0d2240;
+  color: #17143a;
 }
 
 .date {
@@ -238,10 +238,10 @@ input {
 }
 
 .report-count .count {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1.4rem;
   font-weight: 800;
-  color: #0d2240;
+  color: #17143a;
 }
 
 .report-count .label {
@@ -255,7 +255,7 @@ input {
   background: var(--surface-soft);
   border-radius: 10px;
   font-size: 0.95rem;
-  color: #0d2240;
+  color: #17143a;
   line-height: 1.5;
 }
 
@@ -297,7 +297,7 @@ input {
 
 .btn-keep {
   flex: 1;
-  background: #0d2240;
+  background: #17143a;
   color: #ffffff;
   border: none;
   padding: 12px 20px;
@@ -308,7 +308,7 @@ input {
 }
 
 .btn-keep:hover {
-  background: #163158;
+  background: #201a4a;
 }
 
 .btn-delete {
@@ -324,7 +324,7 @@ input {
 }
 
 .btn-delete:hover {
-  background: #dc2626;
+  background: #e11d48;
 }
 
 /* Responsive Design */

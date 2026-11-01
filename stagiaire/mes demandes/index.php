@@ -32,7 +32,7 @@ if (!in_array($statusFilter, $statusWhitelist)) $statusFilter = '';
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ISMO-SkillSwap – Mes demandes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="../../1-css/style.css">
 </head>
@@ -66,7 +66,6 @@ $activeNav = 'requests';
           <select name="status" onchange="this.form.submit()">
             <option value="">Tous les statuts</option>
             <option value="ouvert" <?= $statusFilter === 'ouvert' ? 'selected' : '' ?>>Ouvert</option>
-            <option value="resolu" <?= $statusFilter === 'resolu' ? 'selected' : '' ?>>Résolu</option>
             <option value="resolu" <?= $statusFilter === 'resolu' ? 'selected' : '' ?>>Résolu</option>
           </select>
           <button type="submit" class="filter-btn" id="filterBtn">

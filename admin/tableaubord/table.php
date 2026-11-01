@@ -16,6 +16,17 @@ function timeAgo($date) {
 }
 
 $activities = [];
+$req_roles = [];
+$total_users = 0;
+$conic_gradient = 'conic-gradient(#e9e5fa 0deg 360deg)';
+$colors = ['stagiaire' => '#7c3aed', 'formateur' => '#059669', 'mentor' => '#f59e0b', 'admin' => '#8b5cf6'];
+$labels = ['stagiaire' => 'Stagiaires', 'formateur' => 'Formateurs', 'mentor' => 'Mentors', 'admin' => 'Admins'];
+$utiinscrit = 0;
+$utiinscritce_mois = 0;
+$utiactif = 0;
+$utisuspendu = 0;
+$pubsignal = 0;
+$utienattente = 0;
 try{
     include('../../database/config.php');
     $utiinscrit = $db->query("SELECT COUNT(*) AS total FROM utilisateurs")->fetchColumn();
@@ -46,7 +57,7 @@ try{
     $total_users = array_sum(array_column($req_roles, 'total'));
     $deg = 0;
     $gradient_parts = [];
-    $colors = ['stagiaire' => '#3b82f6', 'formateur' => '#16a34a', 'mentor' => '#f59e0b', 'admin' => '#8b5cf6'];
+    $colors = ['stagiaire' => '#7c3aed', 'formateur' => '#059669', 'mentor' => '#f59e0b', 'admin' => '#8b5cf6'];
     $labels = ['stagiaire' => 'Stagiaires', 'formateur' => 'Formateurs', 'mentor' => 'Mentors', 'admin' => 'Admins'];
     foreach ($req_roles as $r) {
         $angle = $total_users > 0 ? round(($r['total'] / $total_users) * 360) : 0;
@@ -56,7 +67,7 @@ try{
         }
     }
     if ($deg < 360) {
-        $gradient_parts[] = '#dbe4f4 ' . $deg . 'deg 360deg';
+        $gradient_parts[] = '#e9e5fa ' . $deg . 'deg 360deg';
     }
     $conic_gradient = 'conic-gradient(' . implode(',', $gradient_parts) . ')';
 }catch(PDOException $e){
@@ -73,7 +84,7 @@ try{
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="table.css" />
   <link rel="stylesheet" href="../../1-css/style.css" />
@@ -187,7 +198,6 @@ $activeNav = 'dashboard';
         </article>
       </section>
     </main>
-  </div>
   </div>
   <script src="../../2-script/profile-menu.js"></script>
   

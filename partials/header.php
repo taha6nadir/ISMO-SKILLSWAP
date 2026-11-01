@@ -10,20 +10,18 @@ $viewerInitials = strtoupper(substr($headerNom, 0, 1) . substr($headerPrenom, 0,
 $searchValue = $_GET['q'] ?? '';
 ?>
 <header class="header">
-    <?php if (!empty($showBack)): ?>
-        <button class="pub-back" type="button" onclick="history.back()">← Retour</button>
-    <?php endif; ?>
-
     <form class="header-search" action="<?= e($base) ?>search.php" method="GET">
         <svg class="header-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="7" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
-        <input name="q" class="header-search-input" type="search" placeholder="Rechercher un stagiaire..."
+        <input name="q" class="header-search-input" type="search" placeholder="Rechercher..."
             value="<?= e($searchValue) ?>">
     </form>
 
-    <div class="user-pill" data-email="<?= e($headerEmail) ?>">
+    <div class="user-pill" role="button" tabindex="0" aria-label="Ouvrir le menu de profil"
+        aria-expanded="false" aria-controls="profile-menu"
+        data-email="<?= e($headerEmail) ?>" data-base="<?= e($base) ?>" data-user-id="<?= e($viewer['id_user'] ?? '') ?>">
         <div class="user-info">
             <div class="user-name"><?= e($viewerName !== '' ? $viewerName : 'Visiteur') ?></div>
             <div class="user-role"><?= e($headerRole) ?></div>

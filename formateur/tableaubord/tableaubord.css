@@ -1,6 +1,6 @@
     html,
     body {
-        font-family: 'Sora', sans-serif;
+        font-family: 'Manrope', sans-serif;
         background: var(--bg-body);
         -moz-osx-font-smoothing: grayscale;
         margin: 0;
@@ -14,7 +14,7 @@
     h4,
     h5,
     h6 {
-        font-family: 'Sora', sans-serif;
+        font-family: 'Manrope', sans-serif;
         letter-spacing: -0.02em;
     }
 
@@ -50,7 +50,7 @@
         margin-bottom: 32px;
     }
     .page-title p {
-        color: #64748b;
+        color: #6f6c8f;
         margin: 8px 0 32px;
     }
 
@@ -65,7 +65,7 @@
         background: white;
         padding: 24px;
         border-radius: 16px;
-        border: 1px solid #eef2f6;
+        border: 1px solid #f1f0fa;
         position: relative;
         transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -77,7 +77,7 @@
 
     .stat-card h3 {
         font-size: 0.875rem;
-        color: #64748b;
+        color: #6f6c8f;
         margin-bottom: 12px;
         padding-right: 35px; /* Khali blassa l-l'icon f l-ymin */
     }
@@ -91,7 +91,7 @@
 
     .stat-card .trend {
         font-size: 0.75rem;
-        color: #22c55e;
+        color: #10b981;
         font-weight: 600;
     }
 
@@ -105,7 +105,7 @@
         background: white;
         padding: 24px;
         border-radius: 20px;
-        border: 1px solid #eef2f6;
+        border: 1px solid #f1f0fa;
     }
 
     .panel-h {
@@ -122,7 +122,7 @@
     }
 
     .item-box {
-        border: 1px solid #f1f5f9;
+        border: 1px solid #f1f0fb;
         border-radius: 12px;
         padding: 16px;
         margin-bottom: 16px;
@@ -136,10 +136,10 @@
 
     .tag {
         font-size: 11px;
-        background: #f8fafc;
+        background: #f7f7fd;
         padding: 4px 12px;
         border-radius: 20px;
-        color: #64748b;
+        color: #6f6c8f;
         font-weight: 600;
     }
 
@@ -169,14 +169,14 @@
     .chart-label {
         width: 50px;
         font-size: 12px;
-        color: #64748b;
+        color: #6f6c8f;
         font-weight: 500;
     }
 
     .bar-area {
         flex: 1;
         height: 32px;
-        background: #f8fafc;
+        background: #f7f7fd;
         border-radius: 4px;
         overflow: hidden;
     }
@@ -191,10 +191,10 @@
         display: flex;
         justify-content: space-between;
         margin-left: 62px;
-        border-top: 1px solid #eef2f6;
+        border-top: 1px solid #f1f0fa;
         padding-top: 8px;
         font-size: 11px;
-        color: #94a3b8;
+        color: #a5a3bf;
     }
 
     @media (max-width: 1000px) {

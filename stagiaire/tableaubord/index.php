@@ -45,7 +45,7 @@ try {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ISMO-SkillSwap – Tableau de bord</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../../1-css/style.css">
   <link rel="stylesheet" href="style.css">
@@ -153,7 +153,7 @@ $activeNav = 'dashboard';
         <?php else: ?>
           <div class="mentor-list">
             <?php $i = 1;
-            $colors = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444']; ?>
+            $colors = ['#7c3aed', '#8b5cf6', '#10b981', '#f59e0b', '#f43f5e']; ?>
             <?php foreach ($topMentors as $m): ?>
               <div class="mentor-item">
                 <span class="mentor-rank">#<?php echo $i; ?></span>

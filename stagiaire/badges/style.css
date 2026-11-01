@@ -7,7 +7,7 @@
 }
 
 body {
-    background: #f5f7fa;
+    background: #f7f7fd;
     color: #2c3e50;
 }
 
@@ -21,23 +21,23 @@ body {
 }
 
 .page-title {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 2rem;
     font-weight: 700;
-    color: #0d2240;
+    color: #17143a;
     margin-bottom: 8px;
     letter-spacing: -0.3px;
 }
 
 .page-sub {
     font-size: 0.95rem;
-    color: #7a8b99;
+    color: #6f6c8f;
     margin-bottom: 32px;
     font-weight: 400;
 }
 
 .badges-section { margin-bottom: 40px; }
-.badges-section h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: #1e293b; }
+.badges-section h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: #1f1d3d; }
 
 .badges-grid { display: flex; flex-wrap: wrap; gap: 16px; }
 .badges-grid .badge-item { flex: 1 1 280px; max-width: 100%; }
@@ -50,7 +50,7 @@ body {
     border-radius: 16px;
     padding: 16px 20px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-    border: 1px solid #eef2f7;
+    border: 1px solid #f1f0fa;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -70,23 +70,23 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 12px;
-    background: #f4f7fc;
+    background: #f6f6fe;
     flex-shrink: 0;
 }
 
 .badge-icon.gold,
 .badge-icon.purple,
 .badge-icon.orange {
-    background: #f4f7fc;
+    background: #f6f6fe;
 }
 
 .badge-content { flex: 1; min-width: 0; }
-.badge-content h3 { font-size: 0.95rem; font-weight: 700; margin: 0 0 2px; color: #1e293b; }
-.badge-content p { font-size: 0.8rem; color: #64748b; margin: 0 0 4px; }
-.badge-date { font-size: 0.75rem; color: #94a3b8; }
+.badge-content h3 { font-size: 0.95rem; font-weight: 700; margin: 0 0 2px; color: #1f1d3d; }
+.badge-content p { font-size: 0.8rem; color: #6f6c8f; margin: 0 0 4px; }
+.badge-date { font-size: 0.75rem; color: #a5a3bf; }
 
 .btn-claim {
-    background: #3b82f6;
+    background: #7c3aed;
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -98,7 +98,7 @@ body {
     transition: background 0.2s, transform 0.15s;
 }
 
-.btn-claim:hover { background: #2563eb; transform: scale(1.04); }
+.btn-claim:hover { background: #7c3aed; transform: scale(1.04); }
 .btn-claim:active { transform: scale(0.96); }
 
 .badge-stats { display: flex; gap: 16px; margin-bottom: 28px; }
@@ -109,7 +109,7 @@ body {
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-    border: 1px solid #eef2f7;
+    border: 1px solid #f1f0fa;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -118,8 +118,8 @@ body {
 
 .badge-stats .stat-card:hover { transform: translateY(-2px); }
 
-.badge-stats .stat-card .stat-number { font-size: 1.8rem; font-weight: 800; color: #1e293b; line-height: 1; }
-.badge-stats .stat-card .stat-label { font-size: 0.8rem; color: #64748b; }
+.badge-stats .stat-card .stat-number { font-size: 1.8rem; font-weight: 800; color: #1f1d3d; line-height: 1; }
+.badge-stats .stat-card .stat-label { font-size: 0.8rem; color: #6f6c8f; }
 
 @media (max-width: 700px) {
     .page-title { font-size: 1.5rem; }

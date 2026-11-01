@@ -1,18 +1,16 @@
 :root {
-    --navy: #0d2240;
-    --navy-mid: #163158;
-    --navy-light: #1e4270;
-    --accent: #2e6fca;
-    --accent-soft: #3d85e8;
+    --navy: #17143a;
+    --navy-mid: #201a4a;
+    --navy-light: #2a1b5e;
+    --accent: #7c3aed;
+    --accent-soft: #8b5cf6;
     --white: #ffffff;
-    --gray-bg: #f4f6fa;
-    --gray-text: #6b7a99;
-    --border: #dde3ef;
-    --text-dark: #0d2240;
-    --sidebar-w: 220px;
-    --header-h: 64px;
-    --green: #22c55e;
-    --orange: #f97316;
+    --gray-bg: #f5f4fc;
+    --gray-text: #6f6c8f;
+    --border: #e8e6f5;
+    --text-dark: #17143a;
+    --green: #10b981;
+    --orange: #fb923c;
 }
 
 * {
@@ -23,7 +21,7 @@ html,
 body {
     height: 100%;
     margin: 0;
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     background: var(--gray-bg);
     color: var(--text-dark);
 }
@@ -38,7 +36,7 @@ body {
 }
 
 .page-title {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 4px;
@@ -126,7 +124,7 @@ select:hover {
 select:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(46, 111, 202, 0.1);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
 }
 
 .filter-btn {
@@ -148,14 +146,14 @@ select:focus {
     background: var(--gray-bg);
     border-color: var(--accent);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(46, 111, 202, 0.1);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
 }
 
 .filter-btn.active {
     background: var(--accent);
     color: var(--white);
     border-color: var(--accent);
-    box-shadow: 0 6px 16px rgba(46, 111, 202, 0.3);
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.3);
 }
 
 .filter-btn.has-active-filters::after {
@@ -198,7 +196,7 @@ select:focus {
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 24px;
-    box-shadow: 0 6px 18px rgba(13, 34, 64, 0.04);
+    box-shadow: 0 6px 18px rgba(23, 20, 58, 0.04);
 }
 
 .card-header {
@@ -245,7 +243,7 @@ select:focus {
 }
 
 .demande-card h2 {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 1.1rem;
     margin: 0 0 8px;
     color: var(--text-dark);
@@ -270,9 +268,9 @@ select:focus {
 }
 
 .badge-status.ouvert {
-    background: #dbeafe;
-    color: #1d4ed8;
-    border: 1px solid #93c5fd;
+    background: #e0e7ff;
+    color: #6d28d9;
+    border: 1px solid #c4b5fd;
 }
 
 .badge-status.resolu {
@@ -295,7 +293,7 @@ select:focus {
 }
 
 .tag {
-    background: rgba(46, 111, 202, 0.1);
+    background: rgba(124, 58, 237, 0.1);
     color: var(--accent);
     padding: 7px 12px;
     border-radius: 999px;
@@ -338,7 +336,7 @@ select:focus {
 }
 
 .ghost-btn.report-btn {
-    color: #b91c1c;
+    color: #be123c;
     border: 1px solid rgba(185, 28, 28, 0.3);
     text-decoration: none;
 }
@@ -374,7 +372,7 @@ select:focus {
     cursor: pointer;
     transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
     font-weight: 600;
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
 }
 
 .btn:hover {
@@ -383,13 +381,13 @@ select:focus {
 
 
 .btn-primary {
-    background: #0d2240;
+    background: #17143a;
     color: #ffffff;
 }
 
 .btn-primary:hover {
-    background: #163158;
-    box-shadow: 0 4px 12px rgba(13, 34, 64, 0.2);
+    background: #201a4a;
+    box-shadow: 0 4px 12px rgba(23, 20, 58, 0.2);
 }
 
 .page-header {
@@ -406,7 +404,7 @@ select:focus {
     color: #8a9bb8;
     font-size: 1rem;
     font-weight: 500;
-    background: #f4f7fc;
+    background: #f6f6fe;
     border-radius: 16px;
     border: 2px dashed #d0d8e4;
 }
@@ -450,7 +448,7 @@ select:focus {
     background: none;
     border: none;
     font-size: 26px;
-    color: #6b7a99;
+    color: #6f6c8f;
     cursor: pointer;
     width: 36px;
     height: 36px;
@@ -461,7 +459,7 @@ select:focus {
 }
 
 .modal-window .modal-close:hover {
-    background: #f4f7fb;
+    background: #f5f6fe;
 }
 
 .modal-window .modal-body {
@@ -474,21 +472,21 @@ select:focus {
 .modal-window .modal-label {
     font-weight: 600;
     font-size: 0.85rem;
-    color: #101d33;
+    color: #12102a;
 }
 
 .modal-window .modal-input {
     padding: 12px 14px;
-    border: 1px solid #e8ecf1;
+    border: 1px solid #e9e8f5;
     border-radius: 12px;
     font-size: 0.9rem;
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     outline: none;
     width: 100%;
 }
 
 .modal-window .modal-input:focus {
-    border-color: #2e6fca;
+    border-color: #7c3aed;
 }
 
 .modal-window .modal-footer {
@@ -498,8 +496,8 @@ select:focus {
 }
 
 .modal-window .btn-cancel {
-    background: #f4f7fb;
-    color: #101d33;
+    background: #f5f6fe;
+    color: #12102a;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -509,15 +507,15 @@ select:focus {
     border: none;
     cursor: pointer;
     font-weight: 600;
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
 }
 
 .modal-window .btn-cancel:hover {
-    background: #e2e8f0;
+    background: #e8e6f5;
 }
 
 .modal-window .btn-primary {
-    background: #0d2240;
+    background: #17143a;
     color: #fff;
     display: inline-flex;
     align-items: center;
@@ -528,11 +526,11 @@ select:focus {
     border: none;
     cursor: pointer;
     font-weight: 600;
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
 }
 
 .modal-window .btn-primary:hover {
-    background: #163158;
+    background: #201a4a;
 }
 
 .toast {
@@ -550,15 +548,15 @@ select:focus {
 }
 
 .toast.success {
-    background: #e6f7e6;
-    color: #1e7e34;
-    border-color: #b7e4b7;
+    background: #d1fae5;
+    color: #047857;
+    border-color: #bbf7d0;
 }
 
 .toast.error {
-    background: #fde8e8;
-    color: #c0392b;
-    border-color: #f5c6cb;
+    background: #ffe4e6;
+    color: #be123c;
+    border-color: #fecdd3;
 }
 
 .toast-hide {

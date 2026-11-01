@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $base = '../../';
 require_once __DIR__ . '/../../partials/bootstrap.php';
 require_role(['formateur']);
@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 
   if (isset($_POST['modif'])) {
-    $id = (int) $_POST['id_competence'];
-    $lenom = htmlspecialchars(trim($_POST['lenom']));
-    $lacategorie = htmlspecialchars(trim($_POST['lacategorie']));
+    $id = (int) ($_POST['id_competence'] ?? 0);
+    $lenom = htmlspecialchars(trim($_POST['lenom'] ?? ''));
+    $lacategorie = htmlspecialchars(trim($_POST['lacategorie'] ?? ''));
     $errModif = [];
     if (empty($lenom))
       $errModif['nom'] = "le nom est obligatoire";
@@ -80,7 +80,7 @@ $showModalModif = $showModalModif || ($editCompetence && !isset($_POST['modif'])
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ISMO-SkillSwap – Mes compétences</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../../1-css/style.css">
   <link rel="stylesheet" href="compe.css">
@@ -98,9 +98,9 @@ $activeNav = 'skills';
     <main class="main">
       <section class="content-area">
         <?php if (isset($_GET["msg"])): ?>
-          <div id="toastMsg" class="toast success">✅ <?php echo $_GET["msg"]; ?></div>
-        <?php elseif (isset($_GET["error"])): ?>
-          <div id="toastMsg" class="toast error">❌ <?php echo $_GET["error"]; ?></div>
+        <div id="toastMsg" class="toast success"><?= icon('check') ?> <?php echo $_GET["msg"]; ?></div>
+      <?php elseif (isset($_GET["error"])): ?>
+        <div id="toastMsg" class="toast error"><?= icon('x') ?> <?php echo $_GET["error"]; ?></div>
         <?php endif; ?>
         <div class="page-header">
           <div>
@@ -114,7 +114,7 @@ $activeNav = 'skills';
         <form method="GET" action="compe.php" style="display:contents;">
         <div class="search-panel">
           <div class="search-box">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"><?= icon('search') ?></span>
             <input name="q" type="search" placeholder="Rechercher une compétence..." aria-label="Recherche compétence" value="<?= htmlspecialchars($searchFilter) ?>" />
           </div>
           <div class="select-box">
@@ -168,8 +168,8 @@ $activeNav = 'skills';
                   <div class="skill-card-header">
                     <h2>' . htmlspecialchars($c["nom"]) . '</h2>
                     <div class="skill-card-actions">
-                      <a href="compe.php?edit=' . $c['id_competence'] . '" class="icon-btn" aria-label="Modifier">✏️</a>
-                      <a href="supprimer.php?id=' . $c['id_competence'] . '" class="icon-btn danger" aria-label="Supprimer" onclick="return confirm(\'Supprimer cette compétence ?\')">🗑️</a>
+            <a href="compe.php?edit=' . $c['id_competence'] . '" class="icon-btn" aria-label="Modifier">' . icon('edit') . '</a>
+            <a href="supprimer.php?id=' . $c['id_competence'] . '" class="icon-btn danger" aria-label="Supprimer" onclick="return confirm(\'Supprimer cette compétence ?\')">' . icon('trash') . '</a>
                     </div>
                   </div>
                   <span class="skill-badge">' . htmlspecialchars($c['categorie']) . '</span>
@@ -179,7 +179,7 @@ $activeNav = 'skills';
                   </article>';
             }
           } else
-            echo '<div class="empty-state">📭 Aucune compétence disponible</div>';
+            echo '<div class="empty-state">' . icon('tag') . ' Aucune compétence disponible</div>';
           ?>
 
         </div>
@@ -209,6 +209,7 @@ $activeNav = 'skills';
               <option value="">Sélectionner une catégorie</option>
               <option value="Frontend">Frontend</option>
               <option value="Backend">Backend</option>
+              <option value="DevOps">DevOps</option>
               <option value="Cybersécurité">Cybersécurité</option>
               <option value="Base de données">Base de données</option>
             </select>

@@ -1,4 +1,4 @@
-﻿*,
+*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -8,34 +8,34 @@
 
 .field-error {
   display: block;
-  color: #e74c3c;
+  color: #f43f5e;
   font-size: 12px;
   margin-top: 4px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 .error-msg {
-  color: #e74c3c;
+  color: #f43f5e;
   margin-bottom: 16px;
   padding: 10px;
-  background: #fde8e8;
+  background: #ffe4e6;
   border-radius: 8px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 14px;
 }
 
 :root {
-  --navy: #0d2240;
-  --navy-mid: #163158;
-  --navy-light: #1e4270;
-  --accent: #2e6fca;
-  --accent-soft: #3d85e8;
+  --navy: #17143a;
+  --navy-mid: #201a4a;
+  --navy-light: #2a1b5e;
+  --accent: #7c3aed;
+  --accent-soft: #8b5cf6;
   --white: #ffffff;
-  --gray-bg: #f4f6fa;
-  --gray-text: #6b7a99;
-  --border: #dde3ef;
-  --text-dark: #0d2240;
+  --gray-bg: #f5f4fc;
+  --gray-text: #6f6c8f;
+  --border: #e8e6f5;
+  --text-dark: #17143a;
 }
 
 html,
@@ -45,7 +45,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 body {
@@ -101,7 +101,7 @@ body {
 }
 
 .brand h1 {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--white);
@@ -124,10 +124,10 @@ body {
 }
 
 .features h2 {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  color: #7fb3ff;
+  color: #c4b5fd;
   margin-bottom: 22px;
 }
 
@@ -150,7 +150,7 @@ body {
 .feature-icon svg {
   width: 22px;
   height: 22px;
-  stroke: #7fb3ff;
+  stroke: #c4b5fd;
   fill: none;
   stroke-width: 2;
   stroke-linecap: round;
@@ -209,7 +209,7 @@ body {
 }
 
 .role-step h2 {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-dark);
@@ -243,13 +243,13 @@ body {
 
 .role-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 4px 20px rgba(46, 111, 202, 0.12);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.12);
   transform: translateY(-2px);
 }
 
 .role-card.selected {
   border-color: var(--accent);
-  background: #f0f6ff;
+  background: #f5f3ff;
 }
 
 .role-icon {
@@ -276,7 +276,7 @@ body {
 }
 
 .role-info h3 {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-dark);
@@ -324,7 +324,7 @@ body {
   padding: 14px;
   background: var(--navy);
   color: var(--white);
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.97rem;
   font-weight: 600;
   border: none;
@@ -352,7 +352,7 @@ body {
 .card {
   background: var(--white);
   border-radius: 18px;
-  box-shadow: 0 4px 32px rgba(13, 34, 64, 0.08);
+  box-shadow: 0 4px 32px rgba(23, 20, 58, 0.08);
   padding: 44px 44px;
   width: 100%;
 }
@@ -362,7 +362,7 @@ body {
 }
 
 .card-header h2 {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-dark);
@@ -378,7 +378,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #f0f6ff;
+  background: #f5f3ff;
   border: 1px solid #c5d9f5;
   border-radius: 20px;
   padding: 4px 12px;
@@ -390,7 +390,7 @@ body {
 }
 
 .role-badge:hover {
-  background: #e0eeff;
+  background: #ece8ff;
 }
 
 .row-2 {
@@ -418,7 +418,7 @@ body {
   border: 1.5px solid var(--border);
   border-radius: 10px;
   font-size: 0.9rem;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   color: var(--text-dark);
   background: var(--white);
   outline: none;
@@ -434,7 +434,7 @@ body {
 .field input:focus,
 .field select:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(46, 111, 202, 0.1);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
 }
 
 .select-wrap {
@@ -489,19 +489,22 @@ body {
 .btn-primary {
   width: 100%;
   padding: 14px;
-  background: var(--navy);
+  background: linear-gradient(110deg, #7c3aed, #6366f1 58%, #06b6d4);
   color: var(--white);
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.97rem;
   font-weight: 600;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.2);
+  transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
 }
 
 .btn-primary:hover {
-  background: var(--navy-light);
+  filter: brightness(1.06);
+  box-shadow: 0 14px 28px rgba(124, 58, 237, 0.28);
+  transform: translateY(-1px);
 }
 
 .btn-primary:active {
@@ -554,11 +557,11 @@ body {
 
 .toggle-pw.visible {
   opacity: 1;
-  color: #16a34a;
+  color: #059669;
 }
 
 .toggle-pw.visible svg {
-  stroke: #16a34a;
+  stroke: #059669;
 }
 
 .photo-upload {
@@ -577,8 +580,8 @@ body {
 
 .photo-upload:hover {
   border-color: var(--accent);
-  background: #f0f6ff;
-  box-shadow: 0 0 0 3px rgba(46, 111, 202, 0.08);
+  background: #f5f3ff;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
 }
 
 .photo-upload-content {
@@ -634,7 +637,7 @@ body {
   padding: 16px;
   border-style: solid;
   border-color: var(--accent);
-  background: #f0f6ff;
+  background: #f5f3ff;
 }
 
 .help-btn {

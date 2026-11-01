@@ -4,6 +4,9 @@ require_once __DIR__ . '/../../partials/bootstrap.php';
 require_role(['formateur']);
 
 include("../../database/config.php");
+$badges = [];
+$stagiaires = [];
+$historique = [];
 try{
 $badges = $db->query("SELECT * FROM badges")->fetchAll(PDO::FETCH_ASSOC);
 $stagiaires = $db->query("SELECT id_user, nom, prenom, filiere FROM utilisateurs WHERE role = 'stagiaire' OR role = 'mentor' ORDER BY nom ASC")->fetchAll(PDO::FETCH_ASSOC);
@@ -24,7 +27,7 @@ $historique = $db->query("SELECT ob.date_obtention, u.nom, u.prenom, b.icone, b.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../1-css/style.css">
     <link rel="stylesheet" href="badge.css">
     <style>
@@ -34,7 +37,7 @@ $historique = $db->query("SELECT ob.date_obtention, u.nom, u.prenom, b.icone, b.
             color: #8a9bb8;
             font-size: 1rem;
             font-weight: 500;
-            background: #f4f7fc;
+            background: #f6f6fe;
             border-radius: 16px;
             border: 2px dashed #d0d8e4;
         }
@@ -64,7 +67,7 @@ $activeNav = 'badges';
 
         <main class="main-content">
             <?php if (isset($_GET['msg'])): ?>
-            <div class="toast success">✓ Badge attribué avec succès</div>
+            <div class="toast success"><?= icon('check') ?> Badge attribué avec succès</div>
             <?php elseif (isset($_GET['error'])): ?>
             <div class="toast error"><?= htmlspecialchars($_GET['error']) ?></div>
             <?php endif; ?>

@@ -1,6 +1,6 @@
 html,
 body {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     background: var(--bg-body);
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
@@ -14,7 +14,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     letter-spacing: -0.02em;
 }
 
@@ -24,14 +24,14 @@ h6 {
     color: #8a9bb8;
     font-size: 1rem;
     font-weight: 500;
-    background: #f4f7fc;
+    background: #f6f6fe;
     border-radius: 16px;
     border: 2px dashed #d0d8e4;
 }
 
 .page-title h1 {
     font-size: 28px;
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
 }
 
 .main {
@@ -47,7 +47,7 @@ h6 {
   letter-spacing: 0.12em;
 }
 .page-title p {
-    color: #64748b;
+    color: #6f6c8f;
     margin-bottom: 30px;
 }
 
@@ -68,21 +68,21 @@ h6 {
     top: 50%;
     transform: translateY(-50%);
     width: 18px;
-    color: #94a3b8;
+    color: #a5a3bf;
 }
 
 .search-wrapper input {
     width: 90%;
     padding: 12px 12px 12px 45px;
     border-radius: 10px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #e8e6f5;
     background: white;
 }
 
 .filiere-select {
     padding: 0 15px;
     border-radius: 10px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #e8e6f5;
     height: 45px;
     background: white;
     color: var(--navy);
@@ -101,7 +101,7 @@ h6 {
     background: white;
     padding: 24px 20px;
     border-radius: 15px;
-    border: 1px solid #f1f5f9;
+    border: 1px solid #f1f0fb;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
@@ -113,18 +113,18 @@ h6 {
 
 .stat-v-label {
     font-size: 14px;
-    color: #64748b;
+    color: #6f6c8f;
 }
 
 .red-stat .stat-v-num {
-    color: #ef4444;
+    color: #f43f5e;
 }
 
 .v-card-item {
     background: white;
     border-radius: 15px;
     padding: 25px;
-    border: 1px solid #f1f5f9;
+    border: 1px solid #f1f0fb;
 }
 
 .v-card-header {
@@ -137,7 +137,7 @@ h6 {
 .v-avatar {
     width: 45px;
     height: 45px;
-    background: #3b82f6;
+    background: #7c3aed;
     color: white;
     border-radius: 50%;
     display: flex;
@@ -154,38 +154,38 @@ h6 {
 
 .v-level-tag {
     font-size: 11px;
-    background: #f1f5f9;
+    background: #f1f0fb;
     padding: 3px 8px;
     border-radius: 5px;
     margin-left: 8px;
-    color: #64748b;
+    color: #6f6c8f;
 }
 
 .v-student-name {
     font-size: 14px;
-    color: #64748b;
+    color: #6f6c8f;
 }
 
 .v-justification {
-    background: #f8fafc;
+    background: #f7f7fd;
     padding: 15px;
     border-radius: 10px;
     font-size: 14px;
     margin-bottom: 20px;
-    color: #334155;
+    color: #2b2947;
 }
 
 .v-card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid #f1f0fb;
     padding-top: 15px;
 }
 
 .v-date {
     font-size: 13px;
-    color: #94a3b8;
+    color: #a5a3bf;
 }
 
 .v-buttons {
@@ -220,7 +220,7 @@ h6 {
 .filiere-select {
     padding: 10px 40px 10px 20px;
     border-radius: 12px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #e8e6f5;
     background: white;
     color: var(--navy);
     font-weight: 500;

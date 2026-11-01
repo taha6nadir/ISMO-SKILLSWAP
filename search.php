@@ -23,22 +23,22 @@ if ($q !== '') {
   <title>ISMO-SkillSwap – Recherche</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="1-css/style.css" />
   <style>
     .search-page { padding: 24px 32px; max-width: 800px; margin: 0 auto; width: 100%; }
-    .search-page h1 { font-family: 'Sora', sans-serif; font-size: 22px; margin-bottom: 24px; }
-    .search-page .search-count { color: #94a3b8; font-size: 14px; margin-bottom: 16px; }
-    .search-user-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 12px; text-decoration: none; color: inherit; transition: box-shadow .15s; }
+    .search-page h1 { font-family: 'Manrope', sans-serif; font-size: 22px; margin-bottom: 24px; }
+    .search-page .search-count { color: #a5a3bf; font-size: 14px; margin-bottom: 16px; }
+    .search-user-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #fff; border: 1px solid #e8e6f5; border-radius: 12px; margin-bottom: 12px; text-decoration: none; color: inherit; transition: box-shadow .15s; }
     .search-user-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,.08); }
     .search-user-card .ava { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#6366f1,#8b5cf6); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; flex-shrink: 0; overflow: hidden; }
     .search-user-card .ava img { width: 100%; height: 100%; object-fit: cover; }
     .search-user-card .info .name { font-weight: 600; font-size: 15px; }
-    .search-user-card .info .detail { font-size: 13px; color: #64748b; margin-top: 2px; }
-    .search-page .empty { text-align: center; padding: 60px 20px; color: #94a3b8; }
+    .search-user-card .info .detail { font-size: 13px; color: #6f6c8f; margin-top: 2px; }
+    .search-page .empty { text-align: center; padding: 60px 20px; color: #a5a3bf; }
     .search-page .empty-icon { font-size: 48px; margin-bottom: 12px; }
     .search-page .form-inline { display: flex; gap: 12px; margin-bottom: 24px; }
-    .search-page .form-inline input { flex: 1; padding: 10px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 15px; }
+    .search-page .form-inline input { flex: 1; padding: 10px 16px; border: 1px solid #e8e6f5; border-radius: 8px; font-size: 15px; }
     .search-page .form-inline button { padding: 10px 24px; background: #6366f1; color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
     .search-page .form-inline button:hover { background: #4f46e5; }
   </style>

@@ -1,15 +1,15 @@
 :root {
-  --bg: #eef3f8;
+  --bg: #f0effa;
   --surface: #ffffff;
-  --surface-soft: #f4f7fb;
-  --border: #dbe4ef;
-  --text: #101d33;
-  --muted: #6c7a94;
-  --blue: #2e6fca;
-  --blue-soft: #e7eefc;
-  --green: #16a34a;
+  --surface-soft: #f5f6fe;
+  --border: #e6e4f4;
+  --text: #12102a;
+  --muted: #6f6c8f;
+  --blue: #6366f1;
+  --blue-soft: #ede9fe;
+  --green: #059669;
   --orange: #f59e0b;
-  --danger: #ef4444;
+  --danger: #f43f5e;
   --radius: 24px;
 }
 
@@ -19,8 +19,8 @@
 
 html,
 body {
-    font-family: 'Sora', sans-serif;
-    background: #f8fafc;
+    font-family: 'Manrope', sans-serif;
+    background: #f7f7fd;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -33,7 +33,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     letter-spacing: -0.02em;
 }
 
@@ -56,7 +56,7 @@ input {
 .content-area {
   padding: 0 14px 100px 0;
   min-height: calc(100vh - var(--header-h, 64px));
-  background: #f8fafc;
+  background: #f7f7fd;
   flex: 1;
 }
 
@@ -120,10 +120,10 @@ input {
 }
 
 .kpi-value {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1.8rem;
   font-weight: 800;
-  color: #0d2240;
+  color: #17143a;
 }
 
 .kpi-trend {
@@ -154,10 +154,10 @@ input {
 
 .chart-section h2 {
   margin: 0 0 20px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #0d2240;
+  color: #17143a;
   letter-spacing: -0.1px;
 }
 
@@ -185,14 +185,14 @@ input {
 .axis-label {
   font-size: 12px;
   fill: var(--muted);
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 .pie-label {
   font-size: 12px;
   fill: var(--blue);
   font-weight: 600;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 /* Top Mentors Section */
@@ -206,10 +206,10 @@ input {
 
 .top-mentors h2 {
   margin: 0 0 20px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #0d2240;
+  color: #17143a;
   letter-spacing: -0.1px;
 }
 
@@ -234,7 +234,7 @@ input {
 }
 
 .mentor-rank {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: var(--muted);
@@ -251,7 +251,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   flex-shrink: 0;
@@ -262,10 +262,10 @@ input {
 }
 
 .mentor-name {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
-  color: #0d2240;
+  color: #17143a;
   letter-spacing: -0.1px;
   margin-bottom: 2px;
 }
@@ -287,9 +287,9 @@ input {
 }
 
 .rating {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 700;
-  color: #0d2240;
+  color: #17143a;
   font-size: 0.9rem;
 }
 

@@ -15,7 +15,7 @@ if (!in_array($roleFilter, $rolesAutorises)) $roleFilter = '';
 if (!in_array($statutFilter, $statutsAutorises)) $statutFilter = '';
 
 try {
-  $conditions = ["(`statut`='actif' and role='stagiaire' OR role='mentor' )"];
+  $conditions = ["(`statut`='actif' AND (role='stagiaire' OR role='mentor'))"];
   $params = [];
   if ($roleFilter) {
     $conditions[] = "role = ?";
@@ -55,7 +55,7 @@ try {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../../1-css/style.css" />
   <link rel="stylesheet" href="utilisateur.css" />
@@ -98,7 +98,7 @@ $activeNav = 'users';
           <form method="GET" action="index.php">
           <div class="table-header">
             <div class="search-wrapper">
-              <span class="search-icon">🔍</span>
+              <span class="search-icon"><?= icon('search') ?></span>
               <input name="q" type="search" placeholder="Rechercher par nom, email..." aria-label="Recherche utilisateurs" value="<?= htmlspecialchars($searchFilter) ?>" />
             </div>
             <div class="filter-row">

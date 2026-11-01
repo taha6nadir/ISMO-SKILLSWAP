@@ -67,7 +67,7 @@ $showModalModif = (isset($_GET['edit']) && $editBadge) || !empty($modifErrors);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ISMO-SkillSwap – Badges</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../../1-css/style.css">
   <link rel="stylesheet" href="badges.css">
@@ -82,7 +82,7 @@ $showModalModif = (isset($_GET['edit']) && $editBadge) || !empty($modifErrors);
       background: white;
       padding: 24px;
       border-radius: 16px;
-      border: 1px solid #eef2f6;
+      border: 1px solid #f1f0fa;
       position: relative;
       transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -92,13 +92,13 @@ $showModalModif = (isset($_GET['edit']) && $editBadge) || !empty($modifErrors);
     }
     .stat-card h3 {
       font-size: 0.875rem;
-      color: #64748b;
+      color: #6f6c8f;
       margin-bottom: 12px;
     }
     .stat-card .val {
       font-size: 2rem;
       font-weight: 700;
-      color: #0d2240;
+      color: #17143a;
     }
     .modal-window {
       display: none;
@@ -126,54 +126,54 @@ $showModalModif = (isset($_GET['edit']) && $editBadge) || !empty($modifErrors);
     }
     .modal-window .modal-header h2 { margin: 0; font-size: 1.2rem; }
     .modal-window .modal-close {
-      background: none; border: none; font-size: 26px; color: #6b7a99;
+      background: none; border: none; font-size: 26px; color: #6f6c8f;
       cursor: pointer; width: 36px; height: 36px; border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
     }
-    .modal-window .modal-close:hover { background: #f4f7fb; }
+    .modal-window .modal-close:hover { background: #f5f6fe; }
     .modal-window .modal-body {
       display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px;
     }
-    .modal-window .modal-label { font-weight: 600; font-size: 0.85rem; color: #101d33; }
+    .modal-window .modal-label { font-weight: 600; font-size: 0.85rem; color: #12102a; }
     .modal-window .modal-input {
-      padding: 12px 14px; border: 1px solid #e8ecf1; border-radius: 12px;
-      font-size: 0.9rem; font-family: 'Sora', sans-serif; outline: none; width: 100%;
+      padding: 12px 14px; border: 1px solid #e9e8f5; border-radius: 12px;
+      font-size: 0.9rem; font-family: 'Manrope', sans-serif; outline: none; width: 100%;
     }
-    .modal-window .modal-input:focus { border-color: #2e6fca; }
+    .modal-window .modal-input:focus { border-color: #6d5ef8; }
     .modal-window .modal-footer {
       display: flex; gap: 10px; justify-content: flex-end;
     }
     .modal-window .btn-cancel {
-      background: #f4f7fb; color: #101d33; display: inline-flex; align-items: center;
+      background: #f5f6fe; color: #12102a; display: inline-flex; align-items: center;
       justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 8px;
-      border: none; cursor: pointer; font-weight: 600; font-family: 'Sora', sans-serif;
+      border: none; cursor: pointer; font-weight: 600; font-family: 'Manrope', sans-serif;
     }
-    .modal-window .btn-cancel:hover { background: #e2e8f0; }
+    .modal-window .btn-cancel:hover { background: #e8e6f5; }
     .modal-window .btn-primary {
-      background: #0d2240; color: #fff; display: inline-flex; align-items: center;
+      background: #17143a; color: #fff; display: inline-flex; align-items: center;
       justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 8px;
-      border: none; cursor: pointer; font-weight: 600; font-family: 'Sora', sans-serif;
+      border: none; cursor: pointer; font-weight: 600; font-family: 'Manrope', sans-serif;
     }
-    .modal-window .btn-primary:hover { background: #163158; }
+    .modal-window .btn-primary:hover { background: #201a4a; }
     .toast {
       padding: 16px 20px; border-radius: 12px; font-weight: 600; font-size: 0.9rem;
       margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
       animation: toastIn 0.4s ease; border: 1px solid; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
     }
-    .toast.success { background: #e6f7e6; color: #1e7e34; border-color: #b7e4b7; }
-    .toast.error { background: #fde8e8; color: #c0392b; border-color: #f5c6cb; }
+    .toast.success { background: #d1fae5; color: #047857; border-color: #bbf7d0; }
+    .toast.error { background: #ffe4e6; color: #be123c; border-color: #fecdd3; }
     .toast-hide { animation: toastOut 0.4s ease forwards; }
     @keyframes toastIn { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes toastOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-16px); } }
     .empty-state {
       grid-column: 1 / -1; text-align: center; padding: 48px 20px;
       color: #8a9bb8; font-size: 1rem; font-weight: 500;
-      background: #f4f7fc; border-radius: 16px; border: 2px dashed #d0d8e4;
+      background: #f6f6fe; border-radius: 16px; border: 2px dashed #d0d8e4;
     }
     .err { color: red; }
     .icon-link {
       font-size: 0.75rem;
-      color: #2e6fca;
+      color: #6d5ef8;
       margin-bottom: 4px;
       display: inline-block;
     }
@@ -192,9 +192,9 @@ $activeNav = 'badges';
     <main class="main">
       <section class="content-area">
         <?php if (isset($_GET["msg"])): ?>
-          <div id="toastMsg" class="toast success">✅ <?php echo $_GET["msg"]; ?></div>
+          <div id="toastMsg" class="toast success"><?= icon('check') ?> <?php echo $_GET["msg"]; ?></div>
         <?php elseif (isset($_GET["error"])): ?>
-          <div id="toastMsg" class="toast error">❌ <?php echo $_GET["error"]; ?></div>
+          <div id="toastMsg" class="toast error"><?= icon('x') ?> <?php echo $_GET["error"]; ?></div>
         <?php endif; ?>
         <div class="page-header">
           <div>
@@ -233,13 +233,13 @@ $activeNav = 'badges';
                     <p>' . $b['points_requis'] . ' points requis</p>
                   </div>
                   <div class="badge-actions">
-                    <a href="badges.php?edit=' . $b['id_badge'] . '" class="icon-btn" aria-label="Modifier">✏️</a>
-                    <a href="supprimer.php?id=' . $b['id_badge'] . '" class="icon-btn danger" aria-label="Supprimer" onclick="return confirm(\'Supprimer ce badge ?\')">🗑️</a>
+                    <a href="badges.php?edit=' . $b['id_badge'] . '" class="icon-btn" aria-label="Modifier">' . icon('edit') . '</a>
+                    <a href="supprimer.php?id=' . $b['id_badge'] . '" class="icon-btn danger" aria-label="Supprimer" onclick="return confirm(\'Supprimer ce badge ?\')">' . icon('trash') . '</a>
                   </div>
                 </article>';
             }
           } else
-            echo '<div class="empty-state">📭 Aucun badge disponible</div>';
+            echo '<div class="empty-state">' . icon('award') . ' Aucun badge disponible</div>';
           ?>
         </div>
       </section>
@@ -263,7 +263,7 @@ $activeNav = 'badges';
           <input class="modal-input" value="<?php if (isset($_POST['lpoints'])) echo htmlspecialchars($_POST['lpoints']); ?>" type="number" name="lpoints" placeholder="Ex: 100">
 
           <label class="modal-label">Icône</label>
-          <a href="https://emojidb.org/badge-emojis" target="_blank" class="icon-link">Trouver des icônes 🎯</a>
+          <a href="https://emojidb.org/badge-emojis" target="_blank" class="icon-link">Trouver des icônes <?= icon('target') ?></a>
           <?php if (isset($err["icone"])) echo "<div class='err'>" . $err["icone"] . "</div>" ?>
           <input class="modal-input" value="<?php if (isset($_POST['licone'])) echo htmlspecialchars($_POST['licone']); ?>" type="text" name="licone" placeholder="Ex: 🎯">
         </div>
@@ -293,7 +293,7 @@ $activeNav = 'badges';
           <input class="modal-input" type="number" name="lpoints" value="<?= htmlspecialchars($modifOld['lpoints'] ?? ($editBadge['points_requis'] ?? '')) ?>" placeholder="Ex: 100">
 
           <label class="modal-label">Icône</label>
-          <a href="https://emojidb.org/badge-emojis" target="_blank" class="icon-link">Trouver des icônes 🎯</a>
+          <a href="https://emojidb.org/badge-emojis" target="_blank" class="icon-link">Trouver des icônes <?= icon('target') ?></a>
           <?php if (isset($modifErrors['icone'])) echo "<div class='err'>" . $modifErrors['icone'] . "</div>" ?>
           <input class="modal-input" type="text" name="licone" value="<?= htmlspecialchars($modifOld['licone'] ?? ($editBadge['icone'] ?? '')) ?>" placeholder="Ex: 🎯">
         </div>

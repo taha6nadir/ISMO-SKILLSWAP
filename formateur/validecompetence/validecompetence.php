@@ -3,6 +3,10 @@ $base = '../../';
 require_once __DIR__ . '/../../partials/bootstrap.php';
 require_role(['formateur']);
 
+$nbdemande = 0;
+$validecemois = 0;
+$refusecemois = 0;
+$validations = [];
 try {
     include("../../database/config.php");
     $nbdemande = $db->query("SELECT COUNT(*) FROM validation_competence WHERE status = 'en_attente'")->fetchColumn();
@@ -31,7 +35,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../1-css/style.css">
     <link rel="stylesheet" href="validecompetence.css">
     <title>Validation des compétences | ISMO-SkillSwap</title>
@@ -89,7 +93,7 @@ $activeNav = 'validate';
             <div class="validation-container">
 
                 <?php if (count($validations) == 0): ?>
-                    <div class="empty-state">📭 Aucune compétence en attente de validation.</div>
+                    <div class="empty-state"><?= icon('clipboard') ?> Aucune compétence en attente de validation.</div>
                 <?php else: ?>
                     <?php foreach ($validations as $validation): ?>
                         <div class="v-card-item" data-nom="<?php echo htmlspecialchars(strtolower($validation['prenom'] . ' ' . $validation['nom'])); ?>" data-competence="<?php echo htmlspecialchars(strtolower($validation['nom_competence'])); ?>" data-filiere="<?php echo htmlspecialchars($validation['filiere']); ?>">
@@ -121,9 +125,9 @@ $activeNav = 'validate';
                                     <?php echo htmlspecialchars($validation['date_demande']); ?></span>
                                 <div class="v-buttons">
                                     <a href="refuser.php?iduser=<?php echo $validation['id_user']; ?>&idcompetence=<?php echo $validation['id_competence']; ?>&id_validateur=<?php echo $_SESSION['id_user']; ?>"
-                                        class="v-btn-refuse">✕ Refuser</a>
+                                        class="v-btn-refuse"><?= icon('x') ?> Refuser</a>
                                     <a href="valider.php?iduser=<?php echo $validation['id_user']; ?>&idcompetence=<?php echo $validation['id_competence']; ?>&id_validateur=<?php echo $_SESSION['id_user']; ?>"
-                                        class="v-btn-validate">✓ Valider</a>
+                                        class="v-btn-validate"><?= icon('check') ?> Valider</a>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +156,5 @@ $activeNav = 'validate';
     
     <script src="validecompetence.js"></script>
 </body>
-
-</html>
 
 </html>

@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <title>ISMO-SkillSwap – Marketplace Admin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../1-css/style.css" />
   <link rel="stylesheet" href="../../1-css/marcketplace.css" />
 
@@ -86,7 +86,6 @@ $activeNav = 'marketplace';
               value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" />
           </div>
           <div class="control-group right-group">
-          <div class="control-group right-group">
             <select name="filiere">
               <option value="all">Toutes les filières</option>
               <?php
@@ -118,6 +117,8 @@ $activeNav = 'marketplace';
 
       <div class="demandes-list">
         <?php
+        $demandes = [];
+        $filieres = $filieres ?? [];
         try {
           if (!isset($db)) include("../../database/config.php");
           $searchCond = '';
@@ -163,7 +164,7 @@ $activeNav = 'marketplace';
                     style="color:var(--accent);font-weight:600;"><?php echo htmlspecialchars($demand['nom'] . ' ' . $demand['prenom']); ?></span>
                   <?php if (!empty($demand['filiere'])): ?>
                     &nbsp;<span
-                      style="font-size:0.75rem;background:#eef2f7;padding:2px 8px;border-radius:4px;"><?php echo htmlspecialchars($demand['filiere']); ?></span>
+                      style="font-size:0.75rem;background:#f1f0fa;padding:2px 8px;border-radius:4px;"><?php echo htmlspecialchars($demand['filiere']); ?></span>
                   <?php endif; ?>
                 </p>
               </div>

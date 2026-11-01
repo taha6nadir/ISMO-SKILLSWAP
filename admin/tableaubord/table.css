@@ -1,26 +1,26 @@
-﻿* {
+* {
   box-sizing: border-box;
 }
 
 :root {
-  --bg: #eef3f8;
+  --bg: #f0effa;
   --surface: #ffffff;
-  --surface-soft: #f4f7fb;
-  --border: #dbe4ef;
-  --text: #101d33;
-  --muted: #6c7a94;
-  --blue: #3b82f6;
-  --blue-soft: #e7eefc;
-  --green: #16a34a;
+  --surface-soft: #f5f6fe;
+  --border: #e6e4f4;
+  --text: #12102a;
+  --muted: #6f6c8f;
+  --blue: #6366f1;
+  --blue-soft: #ede9fe;
+  --green: #059669;
   --orange: #f59e0b;
-  --warning: #f97316;
+  --warning: #fb923c;
   --radius: 26px;
 }
 
 html,
 body {
-    font-family: 'Sora', sans-serif;
-    background: #f8fafc;
+    font-family: 'Manrope', sans-serif;
+    background: #f7f7fd;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -33,7 +33,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     letter-spacing: -0.02em;
 }
 
@@ -41,7 +41,7 @@ h6 {
   font-size: 2.35rem;
   font-weight: 700;
   line-height: 1.15;
-  color: #0f172a;
+  color: #12102a;
   margin: 0;
 }
 
@@ -53,7 +53,7 @@ h6 {
 .content-area {
   padding: 0 14px 100px 0;
   min-height: calc(100vh - var(--header-h, 64px));
-  background: #f8fafc;
+  background: #f7f7fd;
   flex: 1;
 }
 
@@ -97,7 +97,7 @@ h6 {
 
 .stat-head strong {
   font-size: 0.95rem;
-  color: #596c8d;
+  color: #6f6c8f;
   font-weight: 700;
   line-height: 1.3;
 }
@@ -155,7 +155,7 @@ h6 {
 }
 
 .stat-number {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 2.6rem;
   font-weight: 700;
   color: #111d33;
@@ -232,7 +232,7 @@ h6 {
 
 .card-title {
   font-size: 1rem;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 700;
   margin-bottom: 24px;
 }
@@ -243,10 +243,10 @@ h6 {
   border-radius: 50%;
   margin: 0 auto 24px;
   background: conic-gradient(
-    #3b82f6 0deg 64deg,
-    #16a34a 64deg 80deg,
+    #7c3aed 0deg 64deg,
+    #059669 64deg 80deg,
     #f59e0b 80deg 98deg,
-    #dbe4f4 98deg 360deg
+    #e9e5fa 98deg 360deg
   );
   position: relative;
 }
@@ -280,8 +280,8 @@ h6 {
   border-radius: 999px;
 }
 
-.legend-blue { background: #3b82f6; }
-.legend-green { background: #16a34a; }
+.legend-blue { background: #7c3aed; }
+.legend-green { background: #059669; }
 .legend-orange { background: #f59e0b; }
 
 .activity-item {
@@ -307,7 +307,7 @@ h6 {
 
 .activity-item p strong {
   display: block;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 700;
   margin-bottom: 4px;
 }

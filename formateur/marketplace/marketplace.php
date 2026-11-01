@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $base = '../../';
 require_once __DIR__ . '/../../partials/bootstrap.php';
 require_role(['formateur']);
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <title>ISMO-SkillSwap – Marketplace Formateur</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../1-css/style.css" />
   <link rel="stylesheet" href="../../1-css/marcketplace.css" />
   
@@ -66,9 +66,9 @@ $activeNav = 'marketplace';
 
     <main class="main" data-role="formateur">
       <?php if (isset($_GET["msg"])): ?>
-        <div id="toastMsg" class="toast success">✅ <?php echo $_GET["msg"]; ?></div>
+        <div id="toastMsg" class="toast success"><?= icon('check') ?> <?php echo $_GET["msg"]; ?></div>
       <?php elseif (isset($_GET["error"])): ?>
-        <div id="toastMsg" class="toast error">❌ <?php echo $_GET["error"]; ?></div>
+        <div id="toastMsg" class="toast error"><?= icon('x') ?> <?php echo $_GET["error"]; ?></div>
       <?php endif; ?>
       <div class="page-header">
         <div>
@@ -119,6 +119,8 @@ $activeNav = 'marketplace';
       </form>
       <div class="demandes-list">
         <?php
+        $demandes = [];
+        $filieres = $filieres ?? [];
         try {
           if (!isset($db)) include("../../database/config.php");
           $searchCond = '';
@@ -162,7 +164,7 @@ $activeNav = 'marketplace';
                 <p style="font-size:0.85rem;color:#999;margin-top:8px;">
                   Par :<span style="color:var(--accent);font-weight:600;"><?php echo htmlspecialchars($demand['nom'] . ' ' . $demand['prenom']); ?></span>
                   <?php if (!empty($demand['filiere'])): ?>
-                    &nbsp;<span style="font-size:0.75rem;background:#eef2f7;padding:2px 8px;border-radius:4px;"><?php echo htmlspecialchars($demand['filiere']); ?></span>
+                    &nbsp;<span style="font-size:0.75rem;background:#f1f0fa;padding:2px 8px;border-radius:4px;"><?php echo htmlspecialchars($demand['filiere']); ?></span>
                   <?php endif; ?>
                 </p>
               </div>

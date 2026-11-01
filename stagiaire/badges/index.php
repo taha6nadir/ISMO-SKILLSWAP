@@ -24,7 +24,7 @@ try {
   <title>ISMO-SkillSwap – Mes badges</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../1-css/style.css">
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -42,7 +42,7 @@ $activeNav = 'badges';
       <div class="page-sub">Vos badges de reconnaissance obtenus grâce à vos contributions</div>
       <div class="badge-stats">
         <div class="stat-card">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
           <div>
@@ -62,7 +62,7 @@ $activeNav = 'badges';
         </div>
       </div>
       <section class="badges-section">
-        <h2>🎖️ Mes badges obtenus</h2>
+        <h2><?= icon('award') ?> Mes badges obtenus</h2>
         <div class="badges-grid">
           <?php if (count($badges_obtenus) === 0): ?>
             <p class="no-badges">Vous n'avez pas encore obtenu de badges. Participez pour gagner des récompenses !</p>
@@ -81,9 +81,10 @@ $activeNav = 'badges';
               </article>
             <?php endforeach; ?>
           <?php endif; ?>
+        </div>
       </section>
       <section class="badges-section">
-        <h2>🔒 Badges disponibles</h2>
+        <h2><?= icon('lock') ?> Badges disponibles</h2>
         <div class="badges-grid">
           <?php foreach ($badges as $badge): ?>
             <article class="badge-item locked">

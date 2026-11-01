@@ -72,7 +72,7 @@ $attributed_count = count($attributed_badges);
   <title>ISMO-SkillSwap – Profil de <?= htmlspecialchars($nom . ' ' . $prenom) ?></title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../1-css/style.css" />
   <link rel="stylesheet" href="public_profile.css" />
 </head>
@@ -165,7 +165,7 @@ $showBack = true;
             <?php endforeach; ?>
           </div>
           <?php else: ?>
-          <p style="color:#94a3b8;font-size:0.9rem;">Aucune compétence validée pour le moment.</p>
+          <p style="color:#a5a3bf;font-size:0.9rem;">Aucune compétence validée pour le moment.</p>
           <?php endif; ?>
         </div>
         <div class="pub-card-section">
@@ -183,7 +183,7 @@ $showBack = true;
             <?php endforeach; ?>
           </div>
           <?php else: ?>
-          <p style="color:#94a3b8;font-size:0.9rem;">Aucun badge obtenu pour le moment.</p>
+          <p style="color:#a5a3bf;font-size:0.9rem;">Aucun badge obtenu pour le moment.</p>
           <?php endif; ?>
         </div>
       </div>
@@ -192,7 +192,7 @@ $showBack = true;
       <?php if ($role === 'mentor' && $aide_count > 0): ?>
       <div class="pub-card-section" style="margin-top:24px;">
         <div class="pub-card-title">Aides effectuées</div>
-        <p style="color:#475569;">Ce mentor a effectué <strong><?= $aide_count ?></strong> intervention<?= $aide_count > 1 ? 's' : '' ?> d'aide.</p>
+        <p style="color:#3e3b60;">Ce mentor a effectué <strong><?= $aide_count ?></strong> intervention<?= $aide_count > 1 ? 's' : '' ?> d'aide.</p>
       </div>
       <?php endif; ?>
 
@@ -204,13 +204,13 @@ $showBack = true;
           <div class="comp-list">
             <?php foreach ($confirmed_competences as $c): ?>
               <div class="comp-item">
-                <span><?= htmlspecialchars($c['nom']) ?> <span style="color:#94a3b8;font-weight:400;font-size:0.85rem;">— <?= htmlspecialchars($c['unom'] . ' ' . $c['uprenom']) ?></span></span>
+                <span><?= htmlspecialchars($c['nom']) ?> <span style="color:#a5a3bf;font-weight:400;font-size:0.85rem;">— <?= htmlspecialchars($c['unom'] . ' ' . $c['uprenom']) ?></span></span>
                 <span class="comp-level"><?= htmlspecialchars(ucfirst($c['niveau'])) ?></span>
               </div>
             <?php endforeach; ?>
           </div>
           <?php else: ?>
-          <p style="color:#94a3b8;font-size:0.9rem;">Aucune compétence confirmée pour le moment.</p>
+          <p style="color:#a5a3bf;font-size:0.9rem;">Aucune compétence confirmée pour le moment.</p>
           <?php endif; ?>
         </div>
         <div class="pub-card-section">
@@ -228,7 +228,7 @@ $showBack = true;
             <?php endforeach; ?>
           </div>
           <?php else: ?>
-          <p style="color:#94a3b8;font-size:0.9rem;">Aucun badge attribué pour le moment.</p>
+          <p style="color:#a5a3bf;font-size:0.9rem;">Aucun badge attribué pour le moment.</p>
           <?php endif; ?>
         </div>
       </div>
@@ -238,11 +238,11 @@ $showBack = true;
       <div class="pub-grid">
         <div class="pub-card-section">
           <div class="pub-card-title">À propos</div>
-          <p style="color:#475569;">Administrateur de la plateforme ISMO-SkillSwap.</p>
+          <p style="color:#3e3b60;">Administrateur de la plateforme ISMO-SkillSwap.</p>
         </div>
         <div class="pub-card-section">
           <div class="pub-card-title">Email</div>
-          <p style="color:#475569;"><?= htmlspecialchars($user['email']) ?></p>
+          <p style="color:#3e3b60;"><?= htmlspecialchars($user['email']) ?></p>
         </div>
       </div>
       <?php endif; ?>

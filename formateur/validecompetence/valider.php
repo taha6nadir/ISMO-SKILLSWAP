@@ -1,29 +1,30 @@
 <?php
-session_start();
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'formateur') {
-    header('Location: ../../pagelogin/connexion/index.php');
+$base = '../../';
+require_once __DIR__ . '/../../partials/bootstrap.php';
+require_role(['formateur']);
+
+$idUser = isset($_GET['iduser']) ? (int) $_GET['iduser'] : 0;
+$idCompetence = isset($_GET['idcompetence']) ? (int) $_GET['idcompetence'] : 0;
+
+if ($idUser <= 0 || $idCompetence <= 0) {
+    header("Location: validecompetence.php?error=missing_params");
     exit();
 }
-if (isset($_GET['iduser']) && isset($_GET['idcompetence'])) {
-    include("../../database/config.php");
-    try {
-        #ajoute l'id de validateur et la date de validation dans la table validation_competence et change le status en validée
-        $stmt = $db->prepare("UPDATE validation_competence SET status = 'validee', date_validation = NOW(), id_validateur = ? WHERE id_user = ? AND id_competence = ?");
-        $result = $stmt->execute([$_GET['id_validateur'], $_GET['iduser'], $_GET['idcompetence']]);
-        if($result) {
-            $stmt = $db->prepare("UPDATE utilisateurs SET score = score + 100 WHERE id_user = ?");
-            $stmt->execute([$_GET['iduser']]);
-            header("Location: validecompetence.php?msg=valide_success");
-        } else {
-            header("Location: validecompetence.php?error=update_failed");
-        }
-        exit();
-    } catch (PDOException $e) {
-        echo "Erreur: " . $e->getMessage();
-        exit();
+
+try {
+    $stmt = $db->prepare("UPDATE validation_competence SET status = 'validee', date_validation = NOW(), id_validateur = ? WHERE id_user = ? AND id_competence = ?");
+    $stmt->execute([$id_user, $idUser, $idCompetence]);
+
+    if ($stmt->rowCount() > 0) {
+        $stmt = $db->prepare("UPDATE utilisateurs SET score = score + 100 WHERE id_user = ?");
+        $stmt->execute([$idUser]);
+        header("Location: validecompetence.php?msg=valide_success");
+    } else {
+        header("Location: validecompetence.php?error=update_failed");
     }
-} else {
-    header("Location: validecompetence.php?error=missing_params");
+    exit();
+} catch (PDOException $e) {
+    header("Location: validecompetence.php?error=" . urlencode($e->getMessage()));
     exit();
 }
 ?>

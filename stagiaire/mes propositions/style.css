@@ -1,20 +1,20 @@
 :root {
-  --navy: #0d2240;
-  --navy-mid: #163158;
-  --navy-light: #1e4270;
-  --accent: #2e6fca;
-  --accent-soft: #3d85e8;
+  --navy: #17143a;
+  --navy-mid: #201a4a;
+  --navy-light: #2a1b5e;
+  --accent: #7c3aed;
+  --accent-soft: #8b5cf6;
   --white: #ffffff;
-  --gray-bg: #f4f6fa;
-  --gray-text: #6b7a99;
-  --border: #dde3ef;
-  --text-dark: #0d2240;
+  --gray-bg: #f5f4fc;
+  --gray-text: #6f6c8f;
+  --border: #e8e6f5;
+  --text-dark: #17143a;
   --sidebar-w: 220px;
   --header-h: 64px;
-  --green: #22c55e;
-  --orange: #f97316;
+  --green: #10b981;
+  --orange: #fb923c;
   --purple: #8b5cf6;
-  --red: #ef4444;
+  --red: #f43f5e;
 }
 
 * { box-sizing: border-box; }
@@ -22,7 +22,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   background: var(--gray-bg);
   color: var(--text-dark);
 }
@@ -75,12 +75,12 @@ html, body {
 
 .mini-stat:nth-child(1)::before { background: linear-gradient(90deg, var(--accent), var(--accent-soft)); }
 .mini-stat:nth-child(2)::before { background: linear-gradient(90deg, var(--orange), #fb923c); }
-.mini-stat:nth-child(3)::before { background: linear-gradient(90deg, var(--green), #4ade80); }
-.mini-stat:nth-child(4)::before { background: linear-gradient(90deg, var(--red), #f87171); }
+.mini-stat:nth-child(3)::before { background: linear-gradient(90deg, var(--green), #34d399); }
+.mini-stat:nth-child(4)::before { background: linear-gradient(90deg, var(--red), #fb7185); }
 
 .mini-stat:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(13,34,64,0.08);
+  box-shadow: 0 8px 24px rgba(23,20,58,0.08);
 }
 
 .stat-icon-row {
@@ -140,7 +140,7 @@ html, body {
 
 .search-group:focus-within {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(46,111,202,0.1);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
 }
 
 .search-icon {
@@ -187,7 +187,7 @@ html, body {
   color: var(--text-dark);
   font-weight: 600;
   font-size: 0.9rem;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -197,7 +197,7 @@ html, body {
   color: var(--white);
   border-color: var(--accent);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(46,111,202,0.2);
+  box-shadow: 0 4px 12px rgba(124,58,237,0.2);
 }
 
 .filter-btn svg {
@@ -225,7 +225,7 @@ html, body {
 
 .proposal-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(13,34,64,0.08);
+  box-shadow: 0 8px 24px rgba(23,20,58,0.08);
 }
 
 .proposal-info {
@@ -276,13 +276,13 @@ html, body {
 }
 
 .proposal-badge.acceptee {
-  background: #dcfce7;
-  color: #15803d;
+  background: #d1fae5;
+  color: #047857;
 }
 
 .proposal-badge.refusee {
-  background: #fee2e2;
-  color: #b91c1c;
+  background: #ffe4e6;
+  color: #be123c;
 }
 
 .empty-state {

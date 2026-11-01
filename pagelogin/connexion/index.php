@@ -44,7 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $redirect = match ($user['role']) {
         'stagiaire','mentor' => '../../stagiaire/tableaubord/index.php',
         'admin' => '../../admin/tableaubord/table.php',
-        'formateur' => '../../formateur/tableaubord/tableaubord.php'
+        'formateur' => '../../formateur/tableaubord/tableaubord.php',
+        default => '../../stagiaire/tableaubord/index.php'
       };
       header("Location: $redirect?msg=Connexion réussie !");
       exit();
@@ -62,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ISMO-SkillSwap – Connexion</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="connexion.css" />
 </head>

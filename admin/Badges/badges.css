@@ -1,15 +1,15 @@
 :root {
-  --bg: #eef3f8;
+  --bg: #f0effa;
   --surface: #ffffff;
-  --surface-soft: #f4f7fb;
-  --border: #dbe4ef;
-  --text: #101d33;
-  --muted: #6c7a94;
-  --blue: #2e6fca;
-  --blue-soft: #e7eefc;
-  --green: #16a34a;
+  --surface-soft: #f5f6fe;
+  --border: #e6e4f4;
+  --text: #12102a;
+  --muted: #6f6c8f;
+  --blue: #6366f1;
+  --blue-soft: #ede9fe;
+  --green: #059669;
   --orange: #f59e0b;
-  --danger: #ef4444;
+  --danger: #f43f5e;
   --radius: 24px;
 }
 
@@ -19,8 +19,8 @@
 
 html,
 body {
-    font-family: 'Sora', sans-serif;
-    background: #f8fafc;
+    font-family: 'Manrope', sans-serif;
+    background: #f7f7fd;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -33,7 +33,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Sora', sans-serif;
+    font-family: 'Manrope', sans-serif;
     letter-spacing: -0.02em;
 }
 
@@ -51,7 +51,7 @@ input {
 .content-area {
   padding: 0 14px 100px 0;
   min-height: calc(100vh - var(--header-h, 64px));
-  background: #f8fafc;
+  background: #f7f7fd;
   flex: 1;
 }
 
@@ -98,7 +98,7 @@ input {
 .btn-primary {
   background: var(--blue);
   color: #ffffff;
-  box-shadow: 0 18px 40px rgba(46, 111, 202, 0.18);
+  box-shadow: 0 18px 40px rgba(124, 58, 237, 0.18);
 }
 
 /* Badges Container - Two Column Layout */
@@ -120,10 +120,10 @@ input {
 .badges-available h2,
 .attributions-recent h2 {
   margin: 0 0 24px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
-  color: #0d2240;
+  color: #17143a;
   letter-spacing: -0.2px;
 }
 
@@ -166,10 +166,10 @@ input {
 
 .badge-card h3 {
   margin: 0 0 4px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1rem;
   font-weight: 700;
-  color: #0d2240;
+  color: #17143a;
   letter-spacing: -0.1px;
 }
 
@@ -267,10 +267,10 @@ input {
 }
 
 .attribution-name {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
-  color: #0d2240;
+  color: #17143a;
   letter-spacing: -0.1px;
   margin-bottom: 2px;
 }
@@ -348,7 +348,7 @@ input {
 
 .modal-content h2{
     margin:0 0 20px;
-    color:#0d2240;
+    color:#17143a;
     text-align:center;
 }
 
@@ -364,7 +364,7 @@ input {
     width:100%;
     padding:12px 15px;
 
-    border:1px solid #dbe4ef;
+    border:1px solid #e6e4f4;
     border-radius:12px;
 
     outline:none;
@@ -372,12 +372,12 @@ input {
 }
 
 .modal-content input:focus{
-    border-color:#2e6fca;
-    box-shadow:0 0 0 4px rgba(46,111,202,.15);
+    border-color:#7c3aed;
+    box-shadow:0 0 0 4px rgba(124,58,237,.15);
 }
 
 .modal-content button{
-    background:#2e6fca;
+    background:#7c3aed;
     color:white;
 
     border:none;
@@ -391,7 +391,7 @@ input {
 }
 
 .modal-content button:hover{
-    background:#1f5ab0;
+    background:#7c3aed;
 }
 
 .close{
@@ -399,11 +399,11 @@ input {
     font-size:28px;
     font-weight:bold;
     cursor:pointer;
-    color:#6c7a94;
+    color:#6f6c8f;
 }
 
 .close:hover{
-    color:#ef4444;
+    color:#f43f5e;
 }
 
 @media (max-width: 1200px) {

@@ -5,8 +5,9 @@ require_role(['stagiaire', 'mentor']);
 try {
         include('../../database/config.php');
         if (isset($_POST['resoudre']) && isset($_POST['id_demande'])) {
-            $id_demande = $_POST['id_demande'];
-            $note_mentor = $_POST['note_mentor'] ?? 0;
+            $id_demande = (int) $_POST['id_demande'];
+            $note_mentor = (int) ($_POST['note_mentor'] ?? 0);
+            $note_mentor = max(0, min(5, $note_mentor));
             $commentaire = $_POST['commentaire'] ?? '';
 
             $stmt = $db->prepare("SELECT * FROM aide WHERE id_demande = ? AND id_user = ?");
@@ -16,19 +17,22 @@ try {
             if ($demande) {
                 $db->prepare("UPDATE aide SET status = 'resolu' WHERE id_demande = ?")->execute([$id_demande]);
 
-                $propStmt = $db->prepare("SELECT id_proposition, id_user FROM propositions_aide WHERE id_demande = ? LIMIT 1");
+                $propStmt = $db->prepare("SELECT id_proposition, id_user FROM propositions_aide WHERE id_demande = ? AND status = 'acceptee' LIMIT 1");
                 $propStmt->execute([$id_demande]);
                 $proposition = $propStmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($proposition) {
-                    $db->prepare("UPDATE propositions_aide SET status = 'acceptee' WHERE id_proposition = ?")->execute([$proposition['id_proposition']]);
+                    $existing = $db->prepare("SELECT 1 FROM aide_effectuee WHERE id_proposition = ?");
+                    $existing->execute([$proposition['id_proposition']]);
 
-                    $db->prepare("INSERT INTO aide_effectuee (id_proposition, id_mentor, id_beneficiaire, date_intervention, note_mentor, commentaire) VALUES (?, ?, ?, NOW(), ?, ?)")->execute([$proposition['id_proposition'], $proposition['id_user'], $id_user, $note_mentor, $commentaire]);
+                    if (!$existing->fetchColumn()) {
+                        $db->prepare("INSERT INTO aide_effectuee (id_proposition, id_mentor, id_beneficiaire, date_intervention, note_mentor, commentaire) VALUES (?, ?, ?, NOW(), ?, ?)")->execute([$proposition['id_proposition'], $proposition['id_user'], $id_user, $note_mentor, $commentaire]);
 
-                    $avgStmt = $db->prepare("SELECT ROUND(AVG(note_mentor), 1) FROM aide_effectuee WHERE id_mentor = ?");
-                    $avgStmt->execute([$proposition['id_user']]);
-                    $newMoyenne = $avgStmt->fetchColumn();
-                    $db->prepare("UPDATE utilisateurs SET note_moyenne = ? WHERE id_user = ?")->execute([$newMoyenne, $proposition['id_user']]);
+                        $avgStmt = $db->prepare("SELECT ROUND(AVG(note_mentor), 1) FROM aide_effectuee WHERE id_mentor = ?");
+                        $avgStmt->execute([$proposition['id_user']]);
+                        $newMoyenne = $avgStmt->fetchColumn();
+                        $db->prepare("UPDATE utilisateurs SET note_moyenne = ? WHERE id_user = ?")->execute([$newMoyenne, $proposition['id_user']]);
+                    }
                 }
 
                 header('Location: index.php?message=Demande marquée comme résolue avec succès');

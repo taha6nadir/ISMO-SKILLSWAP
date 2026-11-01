@@ -1,15 +1,15 @@
-﻿:root {
-  --bg: #eef3f8;
+:root {
+  --bg: #f0effa;
   --surface: #ffffff;
-  --surface-soft: #f4f7fb;
-  --border: #e8ecf1;
-  --text: #101d33;
-  --muted: #6b7a99;
-  --blue: #2e6fca;
-  --blue-soft: #e7eefc;
-  --green: #16a34a;
+  --surface-soft: #f5f6fe;
+  --border: #e9e8f5;
+  --text: #12102a;
+  --muted: #6f6c8f;
+  --blue: #6366f1;
+  --blue-soft: #ede9fe;
+  --green: #059669;
   --orange: #f59e0b;
-  --danger: #ef4444;
+  --danger: #f43f5e;
   --radius: 24px;
 }
 
@@ -19,8 +19,8 @@
 
 html,
 body {
-  font-family: 'Sora', sans-serif;
-  background: #f4f6fa;
+  font-family: 'Manrope', sans-serif;
+  background: #f5f4fc;
   margin: 0;
   -webkit-font-smoothing: antialiased;
 }
@@ -31,7 +31,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   letter-spacing: -0.02em;
 }
 
@@ -78,7 +78,7 @@ a {
   cursor: pointer;
   transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
   font-weight: 600;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 .btn:hover {
@@ -86,13 +86,13 @@ a {
 }
 
 .btn-primary {
-  background: #0d2240;
+  background: #17143a;
   color: #ffffff;
 }
 
 .btn-primary:hover {
-  background: #163158;
-  box-shadow: 0 4px 12px rgba(13, 34, 64, 0.2);
+  background: #201a4a;
+  box-shadow: 0 4px 12px rgba(23, 20, 58, 0.2);
 }
 
 .search-panel {
@@ -188,7 +188,7 @@ a {
 .skill-card {
   background: #ffffff;
   border: 1px solid var(--border);
-  border-top: 4px solid #2e6fca;
+  border-top: 4px solid #7c3aed;
   border-radius: 28px;
   padding: 24px;
   box-shadow: 0 20px 48px rgba(16, 37, 79, 0.05);
@@ -227,7 +227,7 @@ a {
   height: 32px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #f4f7fb;
+  background: #f5f6fe;
   color: var(--muted);
   cursor: pointer;
   display: inline-flex;
@@ -238,7 +238,7 @@ a {
 }
 
 .icon-btn:hover {
-  background: #e7eefc;
+  background: #ede9fe;
   transform: translateY(-1px);
 }
 
@@ -248,7 +248,7 @@ a {
 }
 
 .icon-btn.danger:hover {
-  background: #fef2f2;
+  background: #fff1f2;
 }
 
 .skill-badge {
@@ -256,8 +256,8 @@ a {
   align-self: flex-start;
   padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(46, 111, 202, 0.1);
-  color: #2e6fca;
+  background: rgba(124, 58, 237, 0.1);
+  color: #7c3aed;
   font-size: 0.8rem;
   font-weight: 700;
 }
@@ -320,7 +320,7 @@ a {
   background: none;
   border: none;
   font-size: 26px;
-  color: #6b7a99;
+  color: #6f6c8f;
   cursor: pointer;
   width: 36px;
   height: 36px;
@@ -331,7 +331,7 @@ a {
 }
 
 .modal-window .modal-close:hover {
-  background: #f4f7fb;
+  background: #f5f6fe;
 }
 
 .modal-window .modal-body {
@@ -344,21 +344,21 @@ a {
 .modal-window .modal-label {
   font-weight: 600;
   font-size: 0.85rem;
-  color: #101d33;
+  color: #12102a;
 }
 
 .modal-window .modal-input {
   padding: 12px 14px;
-  border: 1px solid #e8ecf1;
+  border: 1px solid #e9e8f5;
   border-radius: 12px;
   font-size: 0.9rem;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
   outline: none;
   width: 100%;
 }
 
 .modal-window .modal-input:focus {
-  border-color: #2e6fca;
+  border-color: #7c3aed;
 }
 
 .modal-window .modal-footer {
@@ -368,8 +368,8 @@ a {
 }
 
 .modal-window .btn-cancel {
-  background: #f4f7fb;
-  color: #101d33;
+  background: #f5f6fe;
+  color: #12102a;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -379,15 +379,15 @@ a {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 .modal-window .btn-cancel:hover {
-  background: #e2e8f0;
+  background: #e8e6f5;
 }
 
 .modal-window .btn-primary {
-  background: #0d2240;
+  background: #17143a;
   color: #fff;
   display: inline-flex;
   align-items: center;
@@ -398,11 +398,11 @@ a {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 .modal-window .btn-primary:hover {
-  background: #163158;
+  background: #201a4a;
 }
 
 .err {
@@ -416,7 +416,7 @@ a {
   color: #8a9bb8;
   font-size: 1rem;
   font-weight: 500;
-  background: #f4f7fc;
+  background: #f6f6fe;
   border-radius: 16px;
   border: 2px dashed #d0d8e4;
 }
@@ -436,15 +436,15 @@ a {
 }
 
 .toast.success {
-  background: #e6f7e6;
-  color: #1e7e34;
-  border-color: #b7e4b7;
+  background: #d1fae5;
+  color: #047857;
+  border-color: #bbf7d0;
 }
 
 .toast.error {
-  background: #fde8e8;
-  color: #c0392b;
-  border-color: #f5c6cb;
+  background: #ffe4e6;
+  color: #be123c;
+  border-color: #fecdd3;
 }
 
 .toast-hide {

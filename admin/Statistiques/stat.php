@@ -3,6 +3,20 @@ $base = '../../';
 require_once __DIR__ . '/../../partials/bootstrap.php';
 require_role(['admin']);
 
+$total_aides = 0;
+$resolues = 0;
+$taux_resolution = 0;
+$total_formateurs = 0;
+$actifs = 0;
+$competences = [];
+$max_comp = 1;
+$bar_colors = ['#6d5ef8', '#059669', '#f59e0b', '#f43f5e', '#8b5cf6', '#06b6d4'];
+$filieres = [];
+$total_filieres = 0;
+$filiere_colors = ['#6d5ef8', '#059669', '#f59e0b', '#f43f5e', '#8b5cf6', '#06b6d4', '#e11d48'];
+$evolutions = [];
+$max_evo = 1;
+$mentors = [];
 try {
     include('../../database/config.php');
 
@@ -19,13 +33,13 @@ try {
     $req_comp->execute();
     $competences = $req_comp->fetchAll(PDO::FETCH_ASSOC);
     $max_comp = count($competences) > 0 ? max(array_column($competences, 'total')) : 1;
-    $bar_colors = ['#2e6fca', '#16a34a', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'];
+    $bar_colors = ['#6d5ef8', '#059669', '#f59e0b', '#f43f5e', '#8b5cf6', '#06b6d4'];
 
     $req_filiere = $db->prepare("SELECT filiere, COUNT(*) AS total FROM utilisateurs WHERE filiere IS NOT NULL AND filiere != '' GROUP BY filiere");
     $req_filiere->execute();
     $filieres = $req_filiere->fetchAll(PDO::FETCH_ASSOC);
     $total_filieres = array_sum(array_column($filieres, 'total'));
-    $filiere_colors = ['#2e6fca', '#16a34a', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#e11d48'];
+    $filiere_colors = ['#6d5ef8', '#059669', '#f59e0b', '#f43f5e', '#8b5cf6', '#06b6d4', '#e11d48'];
 
     $req_evo = $db->prepare("SELECT DATE_FORMAT(date_pub, '%Y-%m') AS mois, COUNT(*) AS total
         FROM aide WHERE date_pub >= NOW() - INTERVAL 12 MONTH
@@ -56,7 +70,7 @@ try {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
 </head>
 
@@ -79,28 +93,28 @@ $activeNav = 'stats';
 
       <div class="stats-kpi">
         <article class="kpi-card">
-          <div class="kpi-icon">📈</div>
+          <div class="kpi-icon"><?= icon('trend') ?></div>
           <div class="kpi-content">
             <span class="kpi-label">Total aides</span>
             <div class="kpi-value"><?= $total_aides ?></div>
           </div>
         </article>
         <article class="kpi-card">
-          <div class="kpi-icon">🎯</div>
+          <div class="kpi-icon"><?= icon('target') ?></div>
           <div class="kpi-content">
             <span class="kpi-label">Taux de résolution</span>
             <div class="kpi-value"><?= $taux_resolution ?>%</div>
           </div>
         </article>
         <article class="kpi-card">
-          <div class="kpi-icon">⭐</div>
+          <div class="kpi-icon"><?= icon('graduation') ?></div>
           <div class="kpi-content">
             <span class="kpi-label">Formateurs</span>
             <div class="kpi-value"><?= $total_formateurs ?></div>
           </div>
         </article>
         <article class="kpi-card">
-          <div class="kpi-icon">👥</div>
+          <div class="kpi-icon"><?= icon('users') ?></div>
           <div class="kpi-content">
             <span class="kpi-label">Utilisateurs actifs</span>
             <div class="kpi-value"><?= $actifs ?></div>
@@ -159,7 +173,7 @@ $activeNav = 'stats';
               <?php foreach ($filieres as $i => $f):
                 $pct = $total_filieres > 0 ? round(($f['total'] / $total_filieres) * 100) : 0;
               ?>
-              <span style="display:flex;align-items:center;gap:4px;font-size:0.8rem;color:#6c7a94">
+              <span style="display:flex;align-items:center;gap:4px;font-size:0.8rem;color:#74719a">
                 <span style="width:10px;height:10px;border-radius:50%;background:<?= $filiere_colors[$i % count($filiere_colors)] ?>"></span>
                 <?= htmlspecialchars($f['filiere']) ?> (<?= $pct ?>%)
               </span>
@@ -174,7 +188,7 @@ $activeNav = 'stats';
           <h2>Évolution mensuelle des aides</h2>
           <div class="chart-container line-chart">
             <?php if (count($evolutions) == 0): ?>
-              <p style="color:#6c7a94;text-align:center">Aucune donnée pour le moment</p>
+              <p style="color:#74719a;text-align:center">Aucune donnée pour le moment</p>
             <?php else: ?>
             <svg viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg">
               <?php
@@ -199,7 +213,7 @@ $activeNav = 'stats';
               <text x="<?= $pad_left - 10 ?>" y="<?= $y_top + 4 ?>" class="axis-label" text-anchor="end"><?= $max_evo ?></text>
 
               <?php if ($nb_points > 1): ?>
-              <polyline points="<?= implode(' ', $points) ?>" fill="none" stroke="#2e6fca" stroke-width="3" />
+              <polyline points="<?= implode(' ', $points) ?>" fill="none" stroke="#6d5ef8" stroke-width="3" />
               <?php endif; ?>
 
               <?php foreach ($evolutions as $i => $e):
@@ -207,7 +221,7 @@ $activeNav = 'stats';
                 $y = $y_base - ($max_evo > 0 ? ($e['total'] / $max_evo) * $y_range : 0);
                 $mois_label = substr($e['mois'], 5, 2) . '/' . substr($e['mois'], 2, 2);
               ?>
-              <circle cx="<?= $x ?>" cy="<?= $y ?>" r="5" fill="#2e6fca" />
+              <circle cx="<?= $x ?>" cy="<?= $y ?>" r="5" fill="#6d5ef8" />
               <text x="<?= $x ?>" y="<?= $y_base + 20 ?>" text-anchor="middle" class="axis-label"><?= $mois_label ?></text>
               <?php endforeach; ?>
             </svg>
@@ -220,7 +234,7 @@ $activeNav = 'stats';
         <h2>Top Mentors</h2>
         <div class="mentors-list">
           <?php if (count($mentors) == 0): ?>
-            <div class="mentor-item"><p style="color:#6c7a94">Aucun mentor pour le moment</p></div>
+            <div class="mentor-item"><p style="color:#74719a">Aucun mentor pour le moment</p></div>
           <?php else: ?>
           <?php foreach ($mentors as $i => $m):
             $initial = strtoupper(substr($m['nom'] ?? '?', 0, 1) . substr($m['prenom'] ?? '?', 0, 1));
@@ -233,7 +247,7 @@ $activeNav = 'stats';
               <div class="mentor-aides"><?= $m['nb_aides'] ?> aides</div>
             </div>
             <div class="mentor-rating">
-              <span class="star">⭐</span>
+              <span class="star"><?= icon('star') ?></span>
               <span class="rating"><?= $m['note_moyenne'] ?></span>
             </div>
           </article>

@@ -3,16 +3,19 @@ $base = '../../';
 require_once __DIR__ . '/../../partials/bootstrap.php';
 require_role(['admin']);
 
+$result = [];
+$totalSignal = 0;
+$totalPages = 1;
+$page = max(1, (int) ($_GET['page'] ?? 1));
 try{
     include('../../database/config.php');
     # Récupérer les publications signalées
-    $page = max(1, (int) ($_GET['page'] ?? 1));
     $perPage = 10;
-    $totalSignal = (int) $db->query("SELECT COUNT(*) FROM aide WHERE signal > 0")->fetchColumn();
+    $totalSignal = (int) $db->query("SELECT COUNT(*) FROM aide WHERE `signal` > 0")->fetchColumn();
     $totalPages = max(1, (int) ceil($totalSignal / $perPage));
     $page = min($page, $totalPages);
     $offset = ($page - 1) * $perPage;
-    $req = $db->prepare("SELECT p.*, u.nom, u.prenom FROM aide p JOIN utilisateurs u ON p.id_user = u.id_user WHERE p.signal > 0 ORDER BY p.date_pub DESC LIMIT $perPage OFFSET $offset");
+    $req = $db->prepare("SELECT p.*, u.nom, u.prenom FROM aide p JOIN utilisateurs u ON p.id_user = u.id_user WHERE p.`signal` > 0 ORDER BY p.date_pub DESC LIMIT $perPage OFFSET $offset");
     $req->execute();
     $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
@@ -32,7 +35,7 @@ try{
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
 </head>
 
@@ -61,12 +64,12 @@ $activeNav = 'moderation';
       </div>
       <div class="moderation-items">
         <?php if (count($result) == 0): ?>
-          <div style="text-align:center;padding:24px;color:#94a3b8;">Aucune publication signalée</div>
+          <div style="text-align:center;padding:24px;color:#a5a3bf;">Aucune publication signalée</div>
         <?php else: ?>
         <?php foreach ($result as $row): ?>
           <article class="moderation-card">
             <div class="card-header">
-              <div class="warning-icon">⚠️</div>
+              <div class="warning-icon"><?= icon('alert') ?></div>
               <div class="publication-info">
                 <h2><?php echo $row['titre']; ?></h2>
               </div>
@@ -90,8 +93,8 @@ $activeNav = 'moderation';
           </div>
 
           <div class="card-actions">
-            <a href="garder.php?id=<?php echo $row['id_demande']; ?>" class="btn btn-keep">✓ Garder</a>
-            <a href="supprimer.php?id=<?php echo $row['id_demande']; ?>" class="btn btn-delete">🗑️ Supprimer</a>
+            <a href="garder.php?id=<?php echo $row['id_demande']; ?>" class="btn btn-keep"><?= icon('check') ?> Garder</a>
+            <a href="supprimer.php?id=<?php echo $row['id_demande']; ?>" class="btn btn-delete"><?= icon('trash') ?> Supprimer</a>
           </div>
         </article>
         <?php endforeach; ?>
